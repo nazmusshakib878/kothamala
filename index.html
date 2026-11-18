@@ -1,0 +1,2852 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no"/>
+<meta name="color-scheme" content="dark"/>
+<meta name="theme-color" content="#070504"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>"/>
+<title>KothaMala (কথামালা) — Ultra Premium Voice Social App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  color-scheme: dark;
+  
+  /* LUXURY OBSIDIAN & JEWEL PALETTE */
+  --bg-deep: #050403;
+  --bg: #0A0706;
+  --surface: rgba(22, 16, 13, 0.72);
+  --surface-hover: rgba(32, 23, 19, 0.85);
+  --surface-card: #140E0B;
+  --surface-solid: #1B130F;
+  --surface-elevated: #241A14;
+  
+  --ink: #FAF3EC;
+  --ink-secondary: #D8C7B8;
+  --muted: #9C8673;
+  --subtle: #5E4E42;
+  
+  /* SPECULAR BORDERS & GLOWS */
+  --line: rgba(255, 255, 255, 0.07);
+  --line-strong: rgba(255, 255, 255, 0.14);
+  --specular: inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+  --specular-card: inset 0 1px 0 0 rgba(255, 255, 255, 0.11), 0 18px 45px -10px rgba(0,0,0,0.7);
+  
+  /* ACCENT: RADIANT TERRACOTTA FIRE */
+  --accent: #FF6622;
+  --accent-light: #FF8748;
+  --accent-glow: #FFA473;
+  --accent-dark: #D44708;
+  --accent-soft: rgba(255, 102, 34, 0.14);
+  --accent-gradient: linear-gradient(135deg, #FF8E52 0%, #FF6622 55%, #D44708 100%);
+  --accent-mesh: radial-gradient(circle at 50% 0%, rgba(255,102,34,0.28) 0%, transparent 68%);
+  
+  /* SECONDARY JEWEL TONES */
+  --teal: #2EC4B6;
+  --teal-glow: rgba(46, 196, 182, 0.18);
+  --teal-gradient: linear-gradient(135deg, #38E4D4 0%, #20998E 100%);
+  
+  --gold: #F2BD44;
+  --gold-glow: rgba(242, 189, 68, 0.16);
+  --gold-gradient: linear-gradient(135deg, #FED976 0%, #D8981A 100%);
+  
+  --red: #FF3B4E;
+  
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-full: 9999px;
+  
+  --shadow-glow: 0 10px 30px rgba(255, 102, 34, 0.38);
+  --shadow-player: 0 -20px 60px rgba(0, 0, 0, 0.85);
+}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;touch-action:manipulation;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:var(--bg-deep)}
+body{
+  font-family:"Plus Jakarta Sans","Hind Siliguri",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  letter-spacing:-.015em;
+  color:var(--ink);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  background:
+    radial-gradient(1000px 600px at 75% -10%, rgba(255,102,34,0.18) 0%, transparent 70%),
+    radial-gradient(900px 500px at 15% 110%, rgba(46,196,182,0.12) 0%, transparent 65%),
+    #050403;
+}
+
+/* SUBTLE NOISE TEXTURE OVERLAY */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:9999;
+}
+
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;transition:transform .18s cubic-bezier(.34,1.56,.64,1),opacity .18s ease,background-color .2s ease,border-color .2s ease,box-shadow .25s ease;outline:none}
+button:active{transform:scale(.94)}
+input,textarea{font-family:inherit;color:var(--ink);outline:none}
+input::placeholder,textarea::placeholder{color:var(--subtle)}
+::-webkit-scrollbar{width:0;height:0}
+
+/* ================= HARDWARE CHASSIS (TITANIUM FRAME) ================= */
+.phone-outer{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  filter:drop-shadow(0 45px 95px rgba(0,0,0,0.85));
+}
+
+/* HARDWARE BUTTONS (VOLUME / POWER) */
+.hw-btn{position:absolute;background:linear-gradient(to right,#362B22,#1D1612);border-radius:4px;z-index:1}
+.hw-btn.vol-up{left:-5px;top:170px;width:5px;height:52px}
+.hw-btn.vol-dn{left:-5px;top:235px;width:5px;height:52px}
+.hw-btn.power{right:-5px;top:200px;width:5px;height:78px}
+
+.phone{
+  width:416px;
+  max-width:100vw;
+  height:min(864px,100dvh);
+  background:linear-gradient(145deg, #2D231B 0%, #17110D 45%, #241A13 100%);
+  border-radius:54px;
+  padding:12px;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,0.18), inset 0 2px 4px rgba(255,255,255,0.22);
+  user-select:none;
+}
+@media(max-width:480px){
+  body{background:var(--bg-deep)}
+  .phone-outer{filter:none}
+  .hw-btn{display:none}
+  .phone{width:100vw;height:100dvh;border-radius:0;padding:0;box-shadow:none;border:none;background:var(--bg-deep)}
+}
+
+.app{
+  background:var(--bg);
+  border-radius:44px;
+  overflow:hidden;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,0.06);
+}
+@media(max-width:480px){.app{border-radius:0;box-shadow:none}}
+
+/* ================= DYNAMIC ISLAND 2.0 ================= */
+.island-wrap{
+  position:absolute;
+  top:12px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:120;
+}
+.dynamic-island{
+  height:30px;
+  width:124px;
+  background:#000;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 12px;
+  transition:all .42s cubic-bezier(.34,1.4,.64,1);
+  box-shadow:0 6px 20px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,0.08);
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+}
+.dynamic-island::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
+}
+.dynamic-island.expanded{
+  width:300px;
+  height:52px;
+  background:#140D0A;
+  border:1px solid rgba(255,102,34,0.35);
+  padding:0 16px;
+  box-shadow:0 16px 36px rgba(0,0,0,.9), 0 0 24px rgba(255,102,34,0.25);
+}
+.di-cam{
+  width:10px;height:10px;border-radius:50%;background:#09060E;
+  border:1px solid rgba(255,255,255,0.15);box-shadow:inset 0 0 3px #1F3F6D;
+}
+.di-wave{display:flex;gap:2.5px;align-items:center;height:14px}
+.di-wave i{width:2.5px;border-radius:99px;background:var(--accent);animation:wv .7s ease infinite alternate}
+.di-wave i:nth-child(2){animation-delay:.2s;height:11px}
+.di-wave i:nth-child(3){animation-delay:.4s;height:15px}
+
+/* ================= STATUS BAR ================= */
+.statusbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 26px 8px;
+  font-size:13px;
+  font-weight:800;
+  flex-shrink:0;
+  position:relative;
+  z-index:100;
+  color:var(--ink);
+  letter-spacing:-.02em;
+}
+.statusbar .sic{display:flex;gap:7px;align-items:center;font-size:12px;font-weight:700}
+
+/* HOME GESTURE INDICATOR */
+.home-indicator{
+  position:absolute;
+  bottom:8px;
+  left:50%;
+  transform:translateX(-50%);
+  width:134px;
+  height:4.5px;
+  background:rgba(255,255,255,0.4);
+  border-radius:99px;
+  z-index:90;
+  pointer-events:none;
+}
+
+/* ================= SCREENS ================= */
+.screens{flex:1;position:relative;overflow:hidden}
+.screen{position:absolute;inset:0;display:none;flex-direction:column;background:var(--bg);overflow:hidden}
+.screen.active{display:flex;animation:screenReveal .38s cubic-bezier(.16,1,.3,1) both}
+.scroll{flex:1;overflow-y:auto;overflow-x:hidden;padding-bottom:28px;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.hidden{display:none!important}
+
+@keyframes screenReveal{
+  from{opacity:0;transform:scale(.97) translateY(10px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+
+/* ================= ULTRA-PREMIUM UI ELEMENTS ================= */
+.appbar{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:8px 20px 10px;
+  flex-shrink:0;
+  position:relative;
+  z-index:10;
+}
+.appbar h1{font-size:24px;margin:0;font-weight:900;letter-spacing:-.03em}
+.appbar .sub{font-size:12px;color:var(--muted);font-weight:700}
+
+.icon-btn{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:var(--surface);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--line);
+  box-shadow:var(--specular);
+  display:grid;
+  place-items:center;
+  font-size:18px;
+  flex-shrink:0;
+  position:relative;
+  color:var(--ink);
+  transition:all .2s ease;
+}
+.icon-btn:hover{background:var(--surface-hover);border-color:var(--line-strong)}
+.icon-btn .dot{
+  position:absolute;top:10px;right:10px;width:8px;height:8px;
+  background:var(--accent);border-radius:50%;border:2px solid var(--bg);
+  box-shadow:0 0 10px var(--accent);
+}
+
+.avatar{
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-weight:900;
+  color:#fff;
+  flex-shrink:0;
+  position:relative;
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,0.25), 0 8px 18px rgba(0,0,0,0.4);
+}
+
+.chip{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:11.5px;
+  font-weight:800;
+  padding:5px 12px;
+  border-radius:var(--radius-full);
+  background:var(--teal-glow);
+  color:var(--teal);
+  border:1px solid rgba(46,196,182,0.3);
+  white-space:nowrap;
+}
+.chip.hot{
+  background:rgba(255,102,34,0.16);
+  color:var(--accent-glow);
+  border-color:rgba(255,102,34,0.38);
+}
+.chip.gold{
+  background:var(--gold-glow);
+  color:var(--gold);
+  border-color:rgba(242,189,68,0.36);
+}
+.chip.dark{
+  background:rgba(255,255,255,0.06);
+  color:var(--ink);
+  border-color:var(--line);
+}
+
+.btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  border-radius:var(--radius-full);
+  padding:15px 22px;
+  font-weight:800;
+  font-size:15px;
+  width:100%;
+  letter-spacing:-.01em;
+  position:relative;
+  overflow:hidden;
+}
+.btn::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);
+}
+.btn-primary{
+  background:var(--accent-gradient);
+  color:#fff;
+  box-shadow:var(--shadow-glow);
+}
+.btn-primary:active{box-shadow:none}
+.btn-dark{background:var(--ink);color:#120B08;box-shadow:0 8px 24px rgba(255,255,255,0.12)}
+.btn-ghost{background:var(--surface);border:1px solid var(--line);box-shadow:var(--specular);color:var(--ink)}
+.btn-teal{background:var(--teal-gradient);color:#fff;box-shadow:0 8px 24px rgba(46,196,182,0.32)}
+
+/* ================= WAVEFORM BARS ================= */
+.wave{display:flex;align-items:center;gap:3px;height:42px;padding:4px 0}
+.wave i{
+  display:block;
+  width:3.5px;
+  border-radius:99px;
+  background:rgba(255,255,255,0.12);
+  flex-shrink:0;
+  transition:background-color .2s ease,transform .16s ease;
+}
+.wave i.on{
+  background:linear-gradient(to top, var(--accent-dark), var(--accent-light));
+  box-shadow:0 0 8px rgba(255,102,34,0.45);
+}
+.playing .wave i{animation:wv .75s ease-in-out infinite alternate}
+.playing .wave i:nth-child(2n){animation-delay:.15s}
+.playing .wave i:nth-child(3n){animation-delay:.3s}
+.playing .wave i:nth-child(5n){animation-delay:.45s}
+
+@keyframes wv{from{transform:scaleY(.4)}to{transform:scaleY(1.25)}}
+@keyframes pulseGlow{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.08);opacity:.85}}
+
+.play-btn{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:var(--accent-gradient);
+  color:#fff;
+  font-size:18px;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+  box-shadow:0 10px 24px rgba(255,102,34,0.42), var(--specular);
+  position:relative;
+}
+.play-btn.sm{width:40px;height:40px;font-size:13px;box-shadow:0 6px 16px rgba(255,102,34,0.35)}
+
+.toast{
+  position:absolute;
+  left:50%;
+  bottom:98px;
+  transform:translate(-50%,24px) scale(.92);
+  background:rgba(250, 243, 236, 0.94);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  color:#110C09;
+  padding:13px 22px;
+  border-radius:var(--radius-full);
+  font-size:13.5px;
+  font-weight:800;
+  opacity:0;
+  pointer-events:none;
+  transition:.32s cubic-bezier(.16,1,.3,1);
+  z-index:999;
+  white-space:nowrap;
+  max-width:92%;
+  box-shadow:0 20px 50px rgba(0,0,0,0.65);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.toast.show{opacity:1;transform:translate(-50%,0) scale(1)}
+
+/* ================= 1. SPLASH SCREEN ================= */
+#s-splash{
+  background:
+    radial-gradient(circle at 50% 30%, #FF6622 0%, #B83B06 45%, #3D1202 95%);
+  color:#fff;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:36px;
+  position:relative;
+}
+.splash-icon{
+  width:116px;
+  height:116px;
+  border-radius:36px;
+  background:rgba(255,255,255,0.18);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.35);
+  box-shadow:0 24px 50px rgba(0,0,0,0.35), inset 0 2px 4px rgba(255,255,255,0.3);
+  display:grid;
+  place-items:center;
+  margin-bottom:24px;
+  animation:pulseGlow 2s ease-in-out infinite;
+}
+.splash-icon svg{width:68px;height:68px;filter:drop-shadow(0 4px 10px rgba(0,0,0,0.25))}
+#s-splash h1{font-size:46px;font-weight:900;letter-spacing:-.04em;line-height:1}
+#s-splash p{opacity:.94;margin:12px 0 0;font-size:15px;font-weight:600}
+.splash-wave{display:flex;gap:4.5px;align-items:center;height:64px;margin:32px 0 22px}
+.splash-wave i{
+  width:5.5px;border-radius:99px;background:#fff;
+  box-shadow:0 0 12px rgba(255,255,255,0.6);
+  animation:wv .8s ease-in-out infinite alternate;
+}
+.splash-wave i:nth-child(2n){animation-delay:.2s}.splash-wave i:nth-child(3n){animation-delay:.4s}
+.loadbar{width:160px;height:5px;background:rgba(255,255,255,0.25);border-radius:99px;overflow:hidden}
+.loadbar i{
+  display:block;height:100%;width:45%;background:#fff;border-radius:99px;
+  box-shadow:0 0 10px #fff;
+  animation:load 1.4s ease-in-out infinite;
+}
+@keyframes load{0%{transform:translateX(-100%)}100%{transform:translateX(350%)}}
+
+/* ================= 2. ONBOARDING ================= */
+.ob-slide{display:none;flex-direction:column;height:100%;padding:12px 24px 24px;text-align:center}
+.ob-slide.active{display:flex;animation:screenReveal .4s ease both}
+.ob-art{
+  height:318px;
+  border-radius:36px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  padding:24px;
+  margin-top:10px;
+  box-shadow:var(--specular-card);
+  position:relative;
+  overflow:hidden;
+}
+.ob-slide h2{font-size:28px;margin:24px 0 10px;font-weight:900;letter-spacing:-.03em}
+.ob-slide p{color:var(--muted);font-size:15px;line-height:1.55;margin:0 12px}
+.dots{display:flex;gap:8px;justify-content:center;margin:24px 0}
+.dots i{width:8px;height:8px;border-radius:99px;background:var(--surface-elevated);transition:all .32s ease}
+.dots i.on{width:30px;background:var(--accent);box-shadow:0 0 12px rgba(255,102,34,0.6)}
+.ob-actions{margin-top:auto;display:grid;gap:12px}
+
+/* ================= 3. LOGIN & OTP ================= */
+.login-wrap{padding:14px 24px 24px;display:flex;flex-direction:column;height:100%}
+.field{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border:1.5px solid var(--line);
+  background:var(--surface);
+  box-shadow:var(--specular);
+  border-radius:20px;
+  padding:16px 20px;
+  font-weight:700;
+  font-size:16px;
+  transition:border-color .2s ease,box-shadow .2s ease;
+}
+.field:focus-within{border-color:var(--accent);box-shadow:0 0 16px rgba(255,102,34,0.25)}
+.field input{border:none;background:none;font-size:16px;font-weight:700;width:100%}
+.otp-row{display:flex;gap:12px;justify-content:center;margin:26px 0}
+.otp-row input{
+  width:62px;
+  height:70px;
+  border:1.5px solid var(--line);
+  border-radius:20px;
+  text-align:center;
+  font-size:28px;
+  font-weight:900;
+  background:var(--surface);
+  color:var(--ink);
+  box-shadow:var(--specular);
+  transition:border-color .2s ease,transform .16s ease,box-shadow .2s ease;
+}
+.otp-row input:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 20px rgba(255,102,34,0.3);
+  transform:scale(1.06);
+}
+.social-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  border:1px solid var(--line);
+  background:var(--surface);
+  box-shadow:var(--specular);
+  border-radius:var(--radius-full);
+  padding:15px;
+  font-weight:800;
+  font-size:14.5px;
+  width:100%;
+}
+.social-btn:hover{background:var(--surface-hover);border-color:var(--line-strong)}
+
+/* ================= 4. HOME FEED & CARDS ================= */
+.stories{display:flex;gap:16px;padding:8px 20px 6px;overflow-x:auto;flex-shrink:0}
+.story{text-align:center;font-size:11.5px;font-weight:800;width:66px;flex-shrink:0;cursor:pointer}
+.story-ring{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  padding:2.5px;
+  background:conic-gradient(from 180deg, var(--accent), var(--gold), var(--teal), var(--accent));
+  margin:0 auto 6px;
+  position:relative;
+  box-shadow:0 8px 18px rgba(0,0,0,0.4);
+}
+.story-ring>div{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background:#1E1510;
+  display:grid;
+  place-items:center;
+  font-weight:900;
+  color:var(--accent-glow);
+  font-size:15px;
+  border:2.5px solid var(--bg);
+}
+.story-ring.live{background:var(--red);box-shadow:0 0 16px rgba(255,59,78,0.5)}
+.story-ring.live::after{
+  content:"LIVE";
+  position:absolute;
+  bottom:-4px;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--red);
+  color:#fff;
+  font-size:9.5px;
+  font-weight:900;
+  padding:2px 7px;
+  border-radius:99px;
+  border:2px solid var(--bg);
+  box-shadow:0 2px 8px rgba(255,59,78,0.6);
+}
+
+.feed-tabs{display:flex;gap:9px;padding:12px 20px 4px;overflow-x:auto;flex-shrink:0}
+.ftab{
+  border:1px solid var(--line);
+  background:var(--surface);
+  box-shadow:var(--specular);
+  padding:9px 18px;
+  border-radius:var(--radius-full);
+  font-size:13.5px;
+  font-weight:800;
+  white-space:nowrap;
+  min-height:38px;
+}
+.ftab.active{background:var(--ink);color:#120B08;border-color:var(--ink);box-shadow:0 4px 18px rgba(255,255,255,0.15)}
+
+.vcard{
+  margin:14px 20px 0;
+  background:var(--surface-card);
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:18px;
+  box-shadow:var(--specular-card);
+  position:relative;
+  overflow:hidden;
+}
+.vcard::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent);
+}
+.vc-top{display:flex;gap:12px;align-items:center}
+.vc-top b{font-size:15px;font-weight:800}.vc-top span{font-size:12px;color:var(--muted)}
+.vc-title{margin:14px 0 6px;font-weight:800;font-size:16px;line-height:1.45;letter-spacing:-.015em}
+.play-row{display:flex;align-items:center;gap:12px;margin-top:6px}
+.vc-actions{
+  display:flex;
+  gap:8px;
+  margin-top:14px;
+  border-top:1px solid var(--line);
+  padding-top:12px;
+}
+.vc-actions button{
+  flex:1;
+  font-size:13px;
+  font-weight:800;
+  color:var(--muted);
+  padding:8px 6px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+}
+.vc-actions button:hover{background:var(--surface-hover);color:var(--ink)}
+.vc-actions button.liked{color:var(--red)}
+
+.mini-player{
+  margin:10px 20px 0;
+  background:linear-gradient(135deg, #1C130E, #140D0A);
+  border:1px solid rgba(255,102,34,0.3);
+  color:#fff;
+  border-radius:20px;
+  padding:12px 16px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-shrink:0;
+  box-shadow:0 14px 34px rgba(0,0,0,0.6), 0 0 20px rgba(255,102,34,0.15);
+  cursor:pointer;
+  position:relative;
+}
+.mini-player .mpw{flex:1;display:flex;align-items:center;gap:3px;height:22px}
+.mini-player .mpw i{width:3.5px;background:var(--accent-light);border-radius:99px}
+
+/* ================= 5. VIDEO SHORTS ================= */
+#s-video{background:#000}
+.shorts{flex:1;position:relative;overflow:hidden}
+.short{
+  position:absolute;
+  inset:0;
+  display:none;
+  flex-direction:column;
+  justify-content:flex-end;
+  color:#fff;
+  padding:22px 84px 26px 20px;
+}
+.short.active{display:flex;animation:screenReveal .35s ease both}
+.short .s-actions{
+  position:absolute;
+  right:14px;
+  bottom:94px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  align-items:center;
+}
+.short .s-actions button{color:#fff;font-size:12px;font-weight:800;display:flex;flex-direction:column;align-items:center;gap:4px}
+.short .s-actions .ic{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.18);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.22);
+  display:grid;
+  place-items:center;
+  font-size:22px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.5);
+}
+.short .s-nav{position:absolute;top:18px;left:0;right:0;display:flex;justify-content:center;gap:28px;font-weight:900;font-size:16.5px;z-index:20}
+.short .s-nav span{opacity:.65;cursor:pointer}.short .s-nav span.on{opacity:1;border-bottom:3px solid #fff;padding-bottom:4px}
+.disc{
+  width:48px;height:48px;border-radius:50%;
+  background:conic-gradient(#555 0 30%,#111 30% 60%,#555 60%);
+  border:3px solid #000;
+  box-shadow:0 0 16px rgba(0,0,0,0.8);
+  display:grid;place-items:center;animation:spin 3.2s linear infinite;font-size:18px;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ================= 6. EXPLORE ================= */
+.searchbar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:var(--surface);
+  box-shadow:var(--specular);
+  border:1.5px solid var(--line);
+  border-radius:18px;
+  padding:14px 18px;
+  margin:6px 20px 0;
+  color:var(--muted);
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  transition:border-color .2s ease;
+}
+.searchbar:hover{border-color:var(--line-strong)}
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px 20px 0}
+.cat{
+  border-radius:22px;
+  padding:20px;
+  color:#fff;
+  min-height:96px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  cursor:pointer;
+  box-shadow:var(--specular-card);
+  transition:transform .2s ease;
+  position:relative;
+  overflow:hidden;
+}
+.cat:hover{transform:translateY(-2px)}
+.cat b{font-size:16px;font-weight:800}.cat span{font-size:12px;opacity:.88;margin-top:2px}
+.list-item{display:flex;gap:14px;padding:14px 20px;align-items:center;border-bottom:1px solid var(--line)}
+.follow-btn{margin-left:auto;background:var(--ink);color:#120B08;padding:8px 18px;border-radius:var(--radius-full);font-weight:800;font-size:13px;flex-shrink:0}
+.follow-btn.on{background:var(--surface-solid);color:var(--muted);border:1px solid var(--line)}
+.sec-title{display:flex;align-items:center;justify-content:space-between;padding:20px 20px 6px}
+.sec-title b{font-size:17px;font-weight:900;letter-spacing:-.015em}.sec-title span{font-size:13.5px;color:var(--accent);font-weight:800;cursor:pointer}
+
+/* ================= 7. CREATE STUDIO ================= */
+.mode-row{display:flex;gap:8px;padding:6px 20px;overflow-x:auto;flex-shrink:0}
+.mode{padding:10px 18px;border-radius:var(--radius-full);background:var(--surface);border:1px solid var(--line);font-weight:800;font-size:13.5px;white-space:nowrap}
+.mode.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:var(--shadow-glow)}
+
+.record-zone{text-align:center;padding:28px 20px 10px}
+.rec-wave{display:flex;gap:4px;align-items:center;justify-content:center;height:66px;margin:14px 0}
+.rec-wave i{width:4.5px;border-radius:99px;background:rgba(255,255,255,0.12);transition:height .15s ease}
+.rec-on .rec-wave i{background:var(--accent);box-shadow:0 0 10px rgba(255,102,34,0.6)}
+
+.record-btn-wrap{position:relative;display:inline-block;margin:12px auto}
+.record-btn{
+  width:104px;
+  height:104px;
+  border-radius:50%;
+  background:var(--accent-gradient);
+  border:10px solid rgba(255,102,34,0.22);
+  color:#fff;
+  font-size:34px;
+  display:grid;
+  place-items:center;
+  box-shadow:var(--shadow-glow);
+  position:relative;
+  z-index:2;
+}
+.rec-on .record-btn{
+  background:linear-gradient(150deg,#FF5E6E,var(--red));
+  border-color:rgba(255,59,78,0.28);
+  box-shadow:0 18px 45px rgba(255,59,78,0.55);
+  animation:pulseGlow 1.4s infinite;
+}
+
+.tool-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:16px 20px 0}
+.tool{
+  background:var(--surface);
+  border:1px solid var(--line);
+  box-shadow:var(--specular);
+  border-radius:18px;
+  padding:15px 6px;
+  text-align:center;
+  font-size:12px;
+  font-weight:800;
+  transition:all .2s ease;
+}
+.tool:hover{background:var(--surface-hover);border-color:var(--line-strong);transform:translateY(-2px)}
+.tool span{display:block;font-size:22px;margin-bottom:6px}
+
+/* ================= 8. LIVE AUDIO ROOM ================= */
+.live-hero{
+  margin:14px 20px 0;
+  border-radius:26px;
+  padding:22px;
+  color:#fff;
+  background:linear-gradient(140deg,#0E7A6D,#053B34);
+  position:relative;
+  box-shadow:var(--specular-card);
+}
+.speakers{display:flex;gap:18px;padding:20px;flex-wrap:wrap;justify-content:center}
+.speaker{text-align:center;width:76px}
+.speaker .avatar{margin:0 auto 8px;position:relative}
+.speaker .ring{position:absolute;inset:-6px;border:2.5px solid var(--teal);border-radius:50%;animation:pulseGlow 1.4s infinite;box-shadow:0 0 16px rgba(46,196,182,0.6)}
+.speaker small{font-size:12px;font-weight:800;display:block}
+.speaker span{font-size:11px;color:var(--muted)}
+.hand-btn{
+  background:var(--gold-bg);
+  border:1.5px solid rgba(242,189,68,0.4);
+  color:#FFE294;
+  border-radius:20px;
+  padding:15px;
+  font-weight:900;
+  width:100%;
+  font-size:15px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.4);
+}
+
+/* ================= 9. MESSAGES & CHAT ================= */
+.chat-item{
+  display:flex;
+  gap:14px;
+  padding:15px 20px;
+  align-items:center;
+  border-bottom:1px solid var(--line);
+  width:100%;
+  text-align:left;
+}
+.chat-item:hover{background:var(--surface)}
+.unread{
+  margin-left:auto;
+  background:var(--accent);
+  color:#fff;
+  font-size:11.5px;
+  font-weight:900;
+  min-width:22px;
+  height:22px;
+  border-radius:99px;
+  display:grid;
+  place-items:center;
+  padding:0 7px;
+  box-shadow:0 0 10px rgba(255,102,34,0.5);
+}
+.bubble-row{display:flex;margin:8px 20px}
+.bubble{
+  max-width:80%;
+  border-radius:22px;
+  padding:13px 16px;
+  font-size:14.5px;
+  line-height:1.5;
+  box-shadow:var(--specular-card);
+}
+.bubble.me{margin-left:auto;background:var(--accent-gradient);color:#fff;border-bottom-right-radius:6px}
+.bubble.them{background:var(--surface-solid);border:1px solid var(--line);border-bottom-left-radius:6px}
+.chat-input{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  padding:12px 18px calc(12px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--line);
+  background:var(--surface-card);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  flex-shrink:0;
+}
+.chat-input input{
+  flex:1;
+  background:var(--surface-solid);
+  border:1px solid var(--line);
+  box-shadow:var(--specular);
+  border-radius:var(--radius-full);
+  padding:13px 20px;
+  font-size:14.5px;
+}
+.mic-btn{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:var(--accent-gradient);
+  color:#fff;
+  font-size:20px;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+  box-shadow:var(--shadow-glow);
+}
+
+/* ================= 10. ULTRA-PREMIUM BOTTOM NAV ================= */
+.bottom-nav{
+  display:flex;
+  background:rgba(12, 8, 6, 0.92);
+  backdrop-filter:blur(28px) saturate(180%);
+  -webkit-backdrop-filter:blur(28px) saturate(180%);
+  border-top:1px solid var(--line);
+  padding:8px 10px calc(12px + env(safe-area-inset-bottom));
+  flex-shrink:0;
+  position:relative;
+  z-index:80;
+}
+.bottom-nav::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent);
+}
+.bottom-nav button{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  font-size:11px;
+  font-weight:800;
+  color:var(--muted);
+  min-height:52px;
+  justify-content:center;
+  border-radius:16px;
+}
+.bottom-nav button svg{width:22px;height:22px;fill:currentColor}
+.bottom-nav button.active{color:var(--accent)}
+.bottom-nav button.active svg{filter:drop-shadow(0 0 10px rgba(255,102,34,0.6))}
+.bottom-nav .create-tab .ni{
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  background:var(--accent-gradient);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-size:26px;
+  margin-top:-24px;
+  border:4px solid var(--bg);
+  box-shadow:0 10px 24px rgba(255,102,34,0.45);
+}
+.bottom-nav .create-tab{color:var(--accent)}
+
+/* ================= 11. LUXURY MODALS & BOTTOM SHEETS ================= */
+.modal-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.76);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  z-index:200;
+  display:none;
+  align-items:flex-end;
+}
+.modal-overlay.open{display:flex}
+.modal-sheet{
+  background:#140D0A;
+  border:1px solid var(--line-strong);
+  border-bottom:none;
+  border-radius:36px 36px 0 0;
+  width:100%;
+  max-height:86%;
+  padding:24px 22px calc(30px + env(safe-area-inset-bottom));
+  display:flex;
+  flex-direction:column;
+  box-shadow:0 -20px 60px rgba(0,0,0,0.85);
+  animation:sheetUp .36s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.sheet-bar{width:44px;height:4.5px;background:rgba(255,255,255,0.2);border-radius:99px;margin:0 auto 18px}
+
+/* FULL PLAYER SHEET */
+.player-sheet{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255,102,34,0.2) 0%, transparent 65%),
+    linear-gradient(180deg,#1F140F 0%,#0A0605 100%);
+  color:#FAF3EC;
+  z-index:220;
+  display:none;
+  flex-direction:column;
+  padding:24px 26px calc(28px + env(safe-area-inset-bottom));
+}
+.player-sheet.open{display:flex;animation:sheetUp .38s cubic-bezier(.16,1,.3,1) both}
+.player-sheet .big-wave{
+  display:flex;
+  gap:3.5px;
+  align-items:flex-end;
+  height:130px;
+  margin:28px 0 12px;
+  cursor:pointer;
+}
+.player-sheet .big-wave i{flex:1;background:rgba(255,255,255,0.12);border-radius:99px;transition:background-color .15s ease}
+.player-sheet.playing .big-wave i{
+  background:linear-gradient(to top, var(--accent-dark), var(--accent-glow));
+  box-shadow:0 0 10px rgba(255,102,34,0.45);
+  animation:wv .75s ease-in-out infinite alternate;
+}
+.player-sheet .big-wave i:nth-child(2n){animation-delay:.15s}
+.player-sheet .big-wave i:nth-child(3n){animation-delay:.3s}
+
+.scrubber-track{
+  height:7px;
+  background:rgba(255,255,255,0.12);
+  border-radius:99px;
+  position:relative;
+  margin-top:8px;
+  cursor:pointer;
+}
+.scrubber-fill{
+  height:100%;
+  background:var(--accent-gradient);
+  border-radius:99px;
+  width:45%;
+  box-shadow:0 0 12px rgba(255,102,34,0.6);
+}
+.scrubber-thumb{
+  position:absolute;
+  top:50%;
+  left:45%;
+  transform:translate(-50%,-50%);
+  width:16px;
+  height:16px;
+  background:#fff;
+  border-radius:50%;
+  box-shadow:0 0 12px rgba(0,0,0,0.6), 0 0 6px var(--accent);
+}
+
+.p-controls{display:flex;align-items:center;justify-content:center;gap:32px;margin-top:22px}
+.p-controls .main{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:var(--accent-gradient);
+  color:#fff;
+  font-size:30px;
+  display:grid;
+  place-items:center;
+  box-shadow:var(--shadow-glow);
+}
+.p-controls button{font-size:24px;color:var(--ink)}
+
+/* CALL SCREEN MODAL */
+#callModal{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 50% 30%,#33190E,#070504 85%);
+  z-index:250;
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  padding:52px 24px calc(42px + env(safe-area-inset-bottom));
+  color:#fff;
+}
+#callModal.open{display:flex;animation:screenReveal .38s ease both}
+.call-avatar{
+  width:130px;
+  height:130px;
+  border-radius:50%;
+  background:var(--teal-gradient);
+  display:grid;
+  place-items:center;
+  font-size:40px;
+  font-weight:900;
+  box-shadow:0 0 0 18px rgba(46,196,182,0.18), 0 0 50px rgba(46,196,182,0.4);
+  animation:pulseGlow 1.8s infinite;
+}
+.call-actions{display:flex;gap:28px;align-items:center}
+.call-btn{
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:26px;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.2);
+}
+.call-btn.end{background:var(--red);box-shadow:0 10px 30px rgba(255,59,78,0.5)}
+
+/* STORY VIEWER MODAL */
+#storyViewer{
+  position:absolute;
+  inset:0;
+  background:#090605;
+  z-index:240;
+  display:none;
+  flex-direction:column;
+  padding:18px 20px 26px;
+  color:#fff;
+}
+#storyViewer.open{display:flex;animation:screenReveal .32s ease both}
+.story-bars{display:flex;gap:6px;height:4px;margin-bottom:14px}
+.story-bar{flex:1;background:rgba(255,255,255,0.25);border-radius:99px;overflow:hidden}
+.story-bar i{display:block;height:100%;width:0%;background:#fff}
+.story-bar.active i{animation:storyProg 6s linear forwards}
+@keyframes storyProg{to{width:100%}}
+</style>
+</head>
+
+<body>
+<div class="phone-outer">
+  <!-- HARDWARE BUTTONS -->
+  <div class="hw-btn vol-up"></div>
+  <div class="hw-btn vol-dn"></div>
+  <div class="hw-btn power"></div>
+
+  <div class="phone">
+    <div class="app" id="app">
+
+      <!-- ================= DYNAMIC ISLAND ================= -->
+      <div class="island-wrap">
+        <div class="dynamic-island" id="dynamicIsland" onclick="toggleIsland()">
+          <div class="di-cam"></div>
+          <span style="font-size:11.5px;font-weight:900;letter-spacing:-.01em;display:flex;align-items:center;gap:6px" id="diText">
+            🎙️ KothaMala
+          </span>
+          <div class="di-wave"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+
+      <!-- ================= STATUS BAR ================= -->
+      <div class="statusbar" id="statusbar">
+        <span id="clockText">9:41</span>
+        <span class="sic">
+          <span>5G</span>
+          <span>●●●○</span>
+          <span>🔋 92%</span>
+        </span>
+      </div>
+
+      <!-- ================= SCREENS CONTAINER ================= -->
+      <div class="screens" id="screens">
+
+        <!-- ================= 1. SPLASH ================= -->
+        <div class="screen active" id="s-splash">
+          <div class="splash-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="9" y="2.5" width="6" height="11" rx="3" fill="white"/>
+              <path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7" stroke="white" stroke-width="2.3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h1>KothaMala</h1>
+          <p>Your Voice. Your Story. Your Community.</p>
+          <div class="splash-wave">
+            <i style="height:18px"></i><i style="height:40px"></i><i style="height:26px"></i>
+            <i style="height:56px"></i><i style="height:24px"></i><i style="height:48px"></i>
+            <i style="height:32px"></i><i style="height:52px"></i><i style="height:16px"></i>
+          </div>
+          <div class="loadbar"><i></i></div>
+          <p style="font-size:12.5px;opacity:.85;margin-top:22px;letter-spacing:.02em">
+            ভয়েস-ফার্স্ট সোশ্যাল অ্যাপ • বাংলাদেশ
+          </p>
+        </div>
+
+        <!-- ================= 2. ONBOARDING ================= -->
+        <div class="screen" id="s-onboard">
+          <!-- Slide 0 -->
+          <div class="ob-slide active" data-ob="0">
+            <div class="ob-art" style="background:linear-gradient(150deg,#FF6622,#9E2E04)">
+              <div style="font-size:56px;margin-bottom:8px">🎙️</div>
+              <div class="wave">
+                <i style="height:24px;background:#fff"></i><i style="height:52px;background:#fff"></i>
+                <i style="height:36px;background:#fff"></i><i style="height:62px;background:#fff"></i>
+                <i style="height:20px;background:#fff"></i>
+              </div>
+              <b style="font-size:17.5px;margin-top:14px">রেকর্ড করুন • শুনুন • শেয়ার করুন</b>
+            </div>
+            <h2>বলুন নিজের ভাষায়</h2>
+            <p>টাইপ করার দিন শেষ। রেকর্ড করুন এবং শেয়ার করুন আপনার জীবনের প্রতি মুহূর্ত — আপনার নিজস্ব প্রিয় কণ্ঠে।</p>
+            <div class="dots"><i class="on"></i><i></i><i></i></div>
+            <div class="ob-actions">
+              <button class="btn btn-primary" onclick="obNext(1)">পরবর্তী →</button>
+              <button class="btn btn-ghost" onclick="go('s-login')">Skip</button>
+            </div>
+          </div>
+
+          <!-- Slide 1 -->
+          <div class="ob-slide" data-ob="1">
+            <div class="ob-art" style="background:linear-gradient(150deg,#0E7A6D,#043630)">
+              <div style="font-size:56px;margin-bottom:8px">🔴</div>
+              <div style="display:flex;gap:12px;margin:8px 0">
+                <div class="avatar" style="width:54px;height:54px;background:#E85A24;font-size:17px">AR</div>
+                <div class="avatar" style="width:54px;height:54px;background:#C99A2B;font-size:17px">NS</div>
+                <div class="avatar" style="width:54px;height:54px;background:#3D2A1F;font-size:17px">TH</div>
+              </div>
+              <b style="font-size:17.5px;margin-top:14px">Live Audio Stage • Duet • Thread</b>
+            </div>
+            <h2>লাইভ আড্ডায় যোগ দিন</h2>
+            <p>ক্লাবহাউজ বা স্পেসের মতো ভার্চুয়াল অডিও স্টেজে অংশ নিন। হাত তুলুন, আড্ডা দিন এবং পরিচিত হন নতুন বন্ধুদের সাথে।</p>
+            <div class="dots"><i></i><i class="on"></i><i></i></div>
+            <div class="ob-actions">
+              <button class="btn btn-primary" onclick="obNext(2)">পরবর্তী →</button>
+              <button class="btn btn-ghost" onclick="go('s-login')">Skip</button>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="ob-slide" data-ob="2">
+            <div class="ob-art" style="background:linear-gradient(150deg,#C99A2B,#5C4104)">
+              <div style="font-size:56px;margin-bottom:8px">🎧</div>
+              <div class="wave">
+                <i style="height:22px;background:#fff"></i><i style="height:48px;background:#fff"></i>
+                <i style="height:38px;background:#fff"></i><i style="height:56px;background:#fff"></i>
+              </div>
+              <b style="font-size:17.5px;margin-top:14px">স্পোকেন ইংলিশ • পডকাস্ট • অডিও বুক</b>
+            </div>
+            <h2>শুনে শিখুন, দেখে আনন্দ পান</h2>
+            <p>দৈনন্দিন স্পোকেন ইংলিশ কোর্স, ধারাবাহিক ইতিহাস পডকাস্ট এবং হুমায়ূন আহমেদের গল্প — সব এক অ্যাপে।</p>
+            <div class="dots"><i></i><i></i><i class="on"></i></div>
+            <div class="ob-actions">
+              <button class="btn btn-primary" onclick="go('s-login')">এখনই শুরু করুন 🚀</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= 3. LOGIN & OTP ================= -->
+        <div class="screen" id="s-login">
+          <div class="login-wrap">
+            <div style="text-align:center;padding:18px 0 10px">
+              <div class="avatar" style="width:80px;height:80px;border-radius:26px;background:var(--accent-gradient);margin:0 auto;font-size:36px;box-shadow:var(--shadow-glow)">🎙️</div>
+              <h2 style="margin:16px 0 6px;font-size:26px;font-weight:900">KothaMala-তে স্বাগতম</h2>
+              <p style="margin:0;color:var(--muted);font-size:14.5px">মোবাইল নম্বর দিন — পাসওয়ার্ড ছাড়াই সহজে লগইন করুন</p>
+            </div>
+
+            <div id="phoneStep">
+              <label style="font-size:13.5px;font-weight:800;display:block;margin:22px 0 8px">মোবাইল নম্বর</label>
+              <div class="field">
+                <span style="font-size:18px">🇧🇩</span>
+                <span style="color:var(--muted)">+880</span>
+                <input id="phoneInput" type="tel" inputmode="numeric" placeholder="1XXX-XXXXXX" value="1712-345678">
+              </div>
+              <button class="btn btn-primary" style="margin-top:20px" onclick="sendOtp()">OTP পাঠান →</button>
+              
+              <div style="display:flex;align-items:center;gap:12px;margin:24px 0;color:var(--muted);font-size:13px;font-weight:700">
+                <span style="flex:1;height:1px;background:var(--line)"></span>অথবা<span style="flex:1;height:1px;background:var(--line)"></span>
+              </div>
+              
+              <button class="social-btn" onclick="enterApp()">
+                <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.1 9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/><path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3s.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12.3 0 15.1s.7 5.4 1.9 7.8l3.7-2.9c-.2-.7-.4-1.5-.4-2.3z"/><path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.1-6.4-5.2L1.9 16C3.7 19.7 7.5 23 12 23z"/></svg>
+                Continue with Google
+              </button>
+              <button class="social-btn" style="margin-top:10px" onclick="enterApp()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.67-.82 1.13-1.96 1-3.1-.97.04-2.15.65-2.85 1.47-.62.72-1.16 1.88-1.01 2.99 1.09.08 2.19-.54 2.86-1.36z"/></svg>
+                Continue with Apple
+              </button>
+            </div>
+
+            <div id="otpStep" class="hidden">
+              <label style="font-size:14px;font-weight:800;display:block;margin:20px 0 4px;text-align:center">৪-সংখ্যার ভেরিফিকেশন কোড দিন</label>
+              <p style="text-align:center;color:var(--muted);font-size:13.5px;margin:0">+880 1712-345678 নম্বরে পাঠানো হয়েছে</p>
+              <div class="otp-row">
+                <input maxlength="1" inputmode="numeric" value="4">
+                <input maxlength="1" inputmode="numeric" value="8">
+                <input maxlength="1" inputmode="numeric" value="2">
+                <input maxlength="1" inputmode="numeric" placeholder="•">
+              </div>
+              <button class="btn btn-primary" onclick="enterApp()">Verify করে প্রবেশ করুন ✓</button>
+              <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:18px">
+                কোড পাননি? <b style="color:var(--accent);cursor:pointer" onclick="toast('নতুন কোড পাঠানো হয়েছে')">আবার পাঠান (<span id="otpTimer">0:28</span>)</b>
+              </p>
+            </div>
+
+            <p style="margin-top:auto;text-align:center;font-size:12px;color:var(--muted);line-height:1.5">
+              এগিয়ে যাওয়ার মাধ্যমে আপনি আমাদের <b>শর্তাবলী</b> ও <b>গোপনীয়তা নীতি</b>-তে সম্মতি দিচ্ছেন।
+            </p>
+          </div>
+        </div>
+
+        <!-- ================= 4. HOME FEED ================= -->
+        <div class="screen" id="s-home">
+          <div class="appbar">
+            <div style="flex:1">
+              <div class="sub">শুভ সন্ধ্যা 👋</div>
+              <h1>Kotha<span style="color:var(--accent)">Mala</span></h1>
+            </div>
+            <button class="icon-btn" onclick="go('s-explore')" aria-label="Search">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </button>
+            <button class="icon-btn" onclick="go('s-notif')" aria-label="Notifications">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span class="dot"></span>
+            </button>
+            <button class="icon-btn" onclick="go('s-messages')" aria-label="Messages">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <span class="dot"></span>
+            </button>
+          </div>
+
+          <!-- Stories Tray -->
+          <div class="stories">
+            <div class="story" onclick="openStory('Your Story', 'YS', 'নিজের ভয়েস স্টোরি যুক্ত করুন 🎙️')">
+              <div class="story-ring"><div>＋</div></div>
+              <span>Your Story</span>
+            </div>
+            <div class="story" onclick="openStory('Arif Rahman', 'AR', 'ঢাকার বৃষ্টি আর পুরোনো দিনের স্মৃতি...')">
+              <div class="story-ring live"><div>AR</div></div>
+              <span>Arif • Live</span>
+            </div>
+            <div class="story" onclick="openStory('Nusrat Jahan', 'NS', 'আজকের Spoken English প্র্যাকটিস!')">
+              <div class="story-ring"><div>NS</div></div>
+              <span>Nusrat</span>
+            </div>
+            <div class="story" onclick="openStory('Tanvir Tech', 'TH', 'স্মার্টফোনের ব্যাটারি বাঁচানোর টিপস')">
+              <div class="story-ring"><div>TH</div></div>
+              <span>Tanvir</span>
+            </div>
+            <div class="story" onclick="openStory('Sadia Rahman', 'SR', 'মেঘের ঠিকানা — নতুন কবিতার আবৃত্তি')">
+              <div class="story-ring"><div>SR</div></div>
+              <span>Sadia</span>
+            </div>
+            <div class="story" onclick="openStory('Mehedi Hasan', 'MH', 'হাসির আড্ডা ও কমেডি ডায়লগ')">
+              <div class="story-ring"><div>MH</div></div>
+              <span>Mehedi</span>
+            </div>
+          </div>
+
+          <!-- Feed Tabs -->
+          <div class="feed-tabs">
+            <button class="ftab active" onclick="ftab(this)">For You</button>
+            <button class="ftab" onclick="ftab(this)">Following</button>
+            <button class="ftab" onclick="ftab(this)">Trending 🔥</button>
+            <button class="ftab" onclick="ftab(this)">Nearby 📍</button>
+            <button class="ftab" onclick="go('s-learn')">🎓 Learning</button>
+          </div>
+
+          <div class="scroll">
+            
+            <!-- Post 1: Voice Story -->
+            <div class="vcard" data-card data-track="Arif Rahman — ঢাকার বৃষ্টি আর আমার প্রথম চাকরি" data-artist="Arif Rahman" data-avatar="AR">
+              <div class="vc-top">
+                <div class="avatar" style="width:46px;height:46px;background:var(--accent-gradient)">AR</div>
+                <div style="flex:1">
+                  <b>Arif Rahman</b> <span style="color:var(--teal);font-size:13px">✓</span><br>
+                  <span>@arif.voices • #গল্প • ২ মিনিট আগে</span>
+                </div>
+                <span class="chip hot">🔥 Trending</span>
+              </div>
+              <p class="vc-title">ঢাকার বৃষ্টি আর আমার প্রথম চাকরির অভিজ্ঞতা 🌧️</p>
+              <div class="wave" data-wave></div>
+              <div class="play-row">
+                <button class="play-btn" onclick="togglePlay(this)">▶</button>
+                <b style="font-size:14px">2:34</b>
+                <span style="font-size:12.5px;color:var(--muted)">14.2k plays • Voice Thread • 48 replies</span>
+              </div>
+              <div class="vc-actions">
+                <button onclick="like(this)">♥ <span>2.4k</span></button>
+                <button onclick="openComments('ঢাকার বৃষ্টি আর আমার প্রথম চাকরির অভিজ্ঞতা')">💬 48 Reply</button>
+                <button onclick="openShare('ঢাকার বৃষ্টি আর চাকরির গল্প — Arif Rahman')">↗ Share</button>
+                <button onclick="toast('Saved 🔖')">🔖 Save</button>
+              </div>
+            </div>
+
+            <!-- Post 2: Video Voice Post -->
+            <div class="vcard" data-card data-track='Sadia Rahman — কবিতা "মেঘের ঠিকানা"' data-artist="Sadia Rahman" data-avatar="SR">
+              <div class="vc-top">
+                <div class="avatar" style="width:46px;height:46px;background:linear-gradient(135deg,#7C3AED,#3B0764)">SR</div>
+                <div style="flex:1">
+                  <b>Sadia Rahman</b><br>
+                  <span>@sadia.verse • #কবিতা • ৮ মিনিট আগে</span>
+                </div>
+                <span class="chip">📹 Video + Voice</span>
+              </div>
+              <p class="vc-title">নিজের লেখা কবিতা — "মেঘের ঠিকানা" আবৃত্তি 🎙️✨</p>
+              <div style="border-radius:20px;height:185px;margin-top:12px;background:linear-gradient(150deg,#5B3DF0,#180E48);position:relative;display:flex;align-items:flex-end;padding:16px;color:#fff;overflow:hidden;box-shadow:var(--specular-card)">
+                <span style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,0.65);padding:4px 10px;border-radius:99px;font-size:11.5px;font-weight:800">0:58</span>
+                <div class="play-btn" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)" onclick="togglePlay(this)">▶</div>
+                <span style="font-size:13px;font-weight:800;display:flex;align-items:center;gap:6px">🎧 Spatial Audio Mastered</span>
+              </div>
+              <div class="vc-actions">
+                <button onclick="like(this)">♥ <span>5.1k</span></button>
+                <button onclick="openComments('মেঘের ঠিকানা আবৃত্তি')">💬 92 Reply</button>
+                <button onclick="openShare('মেঘের ঠিকানা কবিতা — Sadia Rahman')">↗ Share</button>
+                <button onclick="toast('Saved 🔖')">🔖 Save</button>
+              </div>
+            </div>
+
+            <!-- Post 3: Duet Learning -->
+            <div class="vcard" data-card data-track="Nusrat Jahan — Day 12: Speak English Confidently" data-artist="Nusrat Jahan" data-avatar="NS">
+              <div class="vc-top">
+                <div class="avatar" style="width:46px;height:46px;background:var(--teal-gradient)">NS</div>
+                <div style="flex:1">
+                  <b>Nusrat Jahan</b> <span style="color:var(--teal);font-size:13px">✓</span><br>
+                  <span>@nusrat • Spoken English • ১৮ মিনিট আগে</span>
+                </div>
+                <span class="chip">🎵 Duet Open</span>
+              </div>
+              <p class="vc-title">Day 12: Speak English Confidently — আমার সাথে Duet প্র্যাকটিস করুন! 🎙️</p>
+              <div class="wave" data-wave></div>
+              <div class="play-row">
+                <button class="play-btn" onclick="togglePlay(this)">▶</button>
+                <b style="font-size:14px">1:18</b>
+                <span style="font-size:12.5px;color:var(--muted)">8.7k plays • 126 Duets</span>
+              </div>
+              <div class="vc-actions">
+                <button onclick="like(this)">♥ <span>1.1k</span></button>
+                <button onclick="startDuet('Nusrat Jahan — Spoken English')">🎵 Duet করুন</button>
+                <button onclick="openShare('Spoken English Duet — Nusrat')">↗ Share</button>
+                <button onclick="toast('Saved 🔖')">🔖 Save</button>
+              </div>
+            </div>
+
+            <!-- Weekly Challenge Banner -->
+            <div class="vcard" style="background:linear-gradient(140deg,#2A160C,#140B06);border-color:rgba(255,102,34,0.3)">
+              <div class="vc-top">
+                <span style="font-size:32px">🏆</span>
+                <div style="flex:1">
+                  <b style="font-size:15.5px">Voice Challenge — এই সপ্তাহের বিষয়</b><br>
+                  <span style="font-size:13px;color:var(--muted)">"আমার গ্রামের গল্প" • ১,৪২০ জন অডিও জমা দিয়েছেন</span>
+                </div>
+              </div>
+              <button class="btn btn-primary" style="margin-top:16px;padding:13px" onclick="go('s-create')">🎙️ Challenge-এ অংশ নিন</button>
+            </div>
+
+            <div style="height:14px"></div>
+          </div>
+
+          <!-- Sticky Mini-Player -->
+          <div class="mini-player" id="miniPlayer" onclick="openPlayer()">
+            <button class="play-btn sm" onclick="event.stopPropagation();miniPlayToggle(this)">▶</button>
+            <div style="min-width:0;flex:1">
+              <b id="mpTitle" style="font-size:13.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Arif Rahman — বৃষ্টির গল্প</b>
+              <span id="mpArtist" style="font-size:11.5px;opacity:.75">Mini Player • ট্যাপ করে ফুল প্লেয়ার খুলুন</span>
+            </div>
+            <div class="mpw"><i style="height:8px"></i><i style="height:18px"></i><i style="height:11px"></i><i style="height:20px"></i><i style="height:7px"></i></div>
+            <span style="font-size:18px;padding:4px">⏭</span>
+          </div>
+        </div>
+
+        <!-- ================= 5. VIDEO SHORTS ================= -->
+        <div class="screen" id="s-video">
+          <div class="shorts">
+            <div class="short active" data-short style="background:linear-gradient(170deg,#381708,#0E0907 80%)">
+              <div class="s-nav">
+                <span>Following</span>
+                <span class="on">For You</span>
+              </div>
+              <div class="s-actions">
+                <button onclick="like(this)"><span class="ic">♥</span><span>48.2k</span></button>
+                <button onclick="openComments('ব্যাটারি বাঁচানোর গোপন ট্রিকস')"><span class="ic">💬</span><span>1.2k</span></button>
+                <button onclick="openShare('Tech Tips Short')"><span class="ic">↗</span><span>Share</span></button>
+                <button onclick="nextShort()"><span class="ic">⏭</span><span>Next</span></button>
+                <div class="disc">🎵</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <div class="avatar" style="width:46px;height:46px;background:var(--accent-gradient)">TH</div>
+                <div>
+                  <b style="font-size:15px">@tanvir.tech</b> 
+                  <button class="chip hot" style="margin-left:6px;padding:3px 9px" onclick="follow(this)">Follow</button><br>
+                  <span style="font-size:12.5px;opacity:.85">Tech Tips BD</span>
+                </div>
+              </div>
+              <p style="margin:12px 0 8px;font-size:15px;line-height:1.5">৬০ সেকেন্ডে শিখুন — ফোনের ব্যাটারি লাইফ দ্বিগুণ করার ৩টি গোপন ট্রিকস 🔋 #TechTalk #Shorts</p>
+              <div style="display:flex;align-items:center;gap:8px;font-size:13px;opacity:.9">
+                <span>🎵</span>
+                <span style="flex:1;white-space:nowrap;overflow:hidden">Original Audio — Tanvir Hasan</span>
+                <button class="play-btn sm" onclick="togglePlay(this)">▶</button>
+              </div>
+            </div>
+
+            <div class="short" data-short style="background:linear-gradient(170deg,#06423A,#061F1C 80%)">
+              <div class="s-nav">
+                <span>Following</span>
+                <span class="on">For You</span>
+              </div>
+              <div class="s-actions">
+                <button onclick="like(this)"><span class="ic">♥</span><span>28.4k</span></button>
+                <button onclick="openComments('Spoken English Short')"><span class="ic">💬</span><span>890</span></button>
+                <button onclick="openShare('Spoken English Short')"><span class="ic">↗</span><span>Share</span></button>
+                <button onclick="nextShort()"><span class="ic">⏭</span><span>Next</span></button>
+                <div class="disc">🎵</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <div class="avatar" style="width:46px;height:46px;background:var(--teal-gradient)">NS</div>
+                <div>
+                  <b style="font-size:15px">@nusrat</b><br>
+                  <span style="font-size:12.5px;opacity:.85">Spoken English Coach</span>
+                </div>
+              </div>
+              <p style="margin:12px 0 8px;font-size:15px;line-height:1.5">এক মিনিটে ইংরেজি: "I am looking forward to it" — সঠিক উচ্চারণ ও ব্যবহার শিখুন 🗣️</p>
+              <div style="display:flex;align-items:center;gap:8px;font-size:13px;opacity:.9">
+                <span>🎵</span>
+                <span style="flex:1;white-space:nowrap;overflow:hidden">Original Audio — Nusrat Jahan</span>
+                <button class="play-btn sm" onclick="togglePlay(this)">▶</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= 6. EXPLORE ================= -->
+        <div class="screen" id="s-explore">
+          <div class="appbar">
+            <button class="icon-btn" onclick="go('s-home')">←</button>
+            <div style="flex:1">
+              <h1>Explore</h1>
+              <div class="sub">নতুন কণ্ঠ, বিষয় ও প্রতিভাবান ক্রিয়েটর খুঁজুন</div>
+            </div>
+            <button class="icon-btn" onclick="openVoiceSearch()">🎙️</button>
+          </div>
+
+          <div class="searchbar" onclick="toast('সার্চ কিওয়ার্ড লিখুন...')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span style="flex:1">ভয়েস, টপিক বা ক্রিয়েটর খুঁজুন...</span>
+            <span class="chip">Voice Search</span>
+          </div>
+
+          <div class="scroll">
+            <div class="sec-title"><b>ক্যাটাগরি সমূহ</b><span onclick="toast('সব ক্যাটাগরি লোড হচ্ছে...')">সব দেখুন</span></div>
+            <div class="cat-grid">
+              <div class="cat" style="background:linear-gradient(140deg,#E85A24,#8A2C08)" onclick="filterCategory('সাহিত্য ও গল্প')">
+                <b>📖 গল্প ও সাহিত্য</b><span>14.2k অডিও আজ</span>
+              </div>
+              <div class="cat" style="background:linear-gradient(140deg,#0E7A6D,#054039)" onclick="filterCategory('Learning')">
+                <b>🎓 Learning</b><span>Spoken English, কোর্স</span>
+              </div>
+              <div class="cat" style="background:linear-gradient(140deg,#5B3DF0,#1E105C)" onclick="filterCategory('Podcast')">
+                <b>🎧 পডকাস্ট BD</b><span>৪৫০+ চ্যানেল</span>
+              </div>
+              <div class="cat" style="background:linear-gradient(140deg,#C99A2B,#5A3F04)" onclick="filterCategory('Comedy')">
+                <b>😂 হাসির আড্ডা</b><span>কমেডি ও প্যারোডি</span>
+              </div>
+              <div class="cat" style="background:linear-gradient(140deg,#B03A5B,#4A1020)" onclick="filterCategory('Music')">
+                <b>🎶 গান ও বাউল</b><span>অ্যাকোস্টিক ও কভার</span>
+              </div>
+              <div class="cat" style="background:linear-gradient(140deg,#2E6DA4,#10304C)" onclick="filterCategory('News Talk')">
+                <b>📰 নিউজ ও মতামত</b><span>দৈনন্দিন আলোচনা</span>
+              </div>
+            </div>
+
+            <div class="sec-title"><b>Trending Topics</b></div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;padding:4px 20px 0">
+              <span class="chip hot" onclick="toast('#গল্প সার্চ হচ্ছে')">#গল্প 🔥</span>
+              <span class="chip" onclick="toast('#SpokenEnglish সার্চ হচ্ছে')">#SpokenEnglish</span>
+              <span class="chip" onclick="toast('#PodcastBD সার্চ হচ্ছে')">#PodcastBD</span>
+              <span class="chip" onclick="toast('#কবিতা সার্চ হচ্ছে')">#কবিতা</span>
+              <span class="chip" onclick="toast('#TechTalk সার্চ হচ্ছে')">#TechTalk</span>
+              <span class="chip" onclick="toast('#ঢাকা_বৃষ্টি সার্চ হচ্ছে')">#ঢাকা_বৃষ্টি</span>
+            </div>
+
+            <div class="sec-title"><b>সেরা ক্রিয়েটরবৃন্দ</b><span onclick="toast('আরও ক্রিয়েটর লোড হচ্ছে')">আরও</span></div>
+            <div class="list-item">
+              <div class="avatar" style="width:48px;height:48px;background:linear-gradient(135deg,#7C3AED,#3B0764)">TH</div>
+              <div>
+                <b style="font-size:15px">Tanvir Hasan</b><br>
+                <span style="font-size:12.5px;color:var(--muted)">Tech Reviewer • 84k followers</span>
+              </div>
+              <button class="follow-btn" onclick="follow(this)">Follow</button>
+            </div>
+            <div class="list-item">
+              <div class="avatar" style="width:48px;height:48px;background:var(--gold-gradient)">SR</div>
+              <div>
+                <b style="font-size:15px">Sadia Rahman</b><br>
+                <span style="font-size:12.5px;color:var(--muted)">Poetry &amp; Literature • 62k followers</span>
+              </div>
+              <button class="follow-btn" onclick="follow(this)">Follow</button>
+            </div>
+
+            <div class="sec-title"><b>Voice Map — কাছাকাছি ভয়েস</b></div>
+            <div style="margin:4px 20px 0;border-radius:24px;background:linear-gradient(140deg,#0D2B27,#1A1005);border:1px solid rgba(46,196,182,0.3);padding:20px;box-shadow:var(--specular-card)">
+              <b style="font-size:15.5px">📍 ঢাকা — ১৮২টি পাবলিক ভয়েস পাওয়া গেছে</b>
+              <p style="margin:6px 0 14px;font-size:13.5px;color:var(--muted)">কাছাকাছি মানুষের গল্প ও লাইভ আড্ডা শুনুন • Privacy Protected</p>
+              <button class="btn btn-teal" style="padding:13px" onclick="toast('Voice Map ইন্টারফেস চালু হচ্ছে 🗺️')">Map-এ অডিও শুনুন</button>
+            </div>
+            <div style="height:14px"></div>
+          </div>
+        </div>
+
+        <!-- ================= 7. CREATE STUDIO ================= -->
+        <div class="screen" id="s-create">
+          <div class="appbar">
+            <button class="icon-btn" onclick="go('s-home')">✕</button>
+            <div style="flex:1;text-align:center">
+              <h1 style="font-size:20px">Create Studio</h1>
+              <div class="sub">Voice • Video • Duet • Thread</div>
+            </div>
+            <button class="icon-btn" onclick="toast('Draft সফলভাবে save হয়েছে 💾')">💾</button>
+          </div>
+
+          <div class="mode-row">
+            <button class="mode active" onclick="mode(this)">🎙️ Voice Post</button>
+            <button class="mode" onclick="mode(this)">📹 Video</button>
+            <button class="mode" onclick="mode(this)">🎵 Duet</button>
+            <button class="mode" onclick="mode(this)">🧵 Voice Thread</button>
+            <button class="mode" onclick="go('s-live')">🔴 Go Live</button>
+          </div>
+
+          <div class="scroll">
+            <div class="record-zone" id="recZone">
+              <p style="font-weight:800;font-size:16px" id="recStatusHeader">ট্যাপ করে রেকর্ড শুরু করুন</p>
+              <div class="rec-wave" id="recWave"></div>
+              
+              <div class="record-btn-wrap">
+                <button class="record-btn" id="recBtn" onclick="toggleRec()">●</button>
+              </div>
+
+              <p id="recLabel" style="font-weight:900;color:var(--accent);margin:8px 0 0;font-size:17px">00:00 • Ready</p>
+              <p style="font-size:13px;color:var(--muted);margin:6px 0 0">Multi-clip • Pause/Resume • সর্বোচ্চ ১০ মিনিট</p>
+            </div>
+
+            <!-- Studio Tools Grid -->
+            <div class="tool-grid">
+              <button class="tool" onclick="openFxSheet('effects')"><span>✨</span>ভয়েস ইফেক্ট</button>
+              <button class="tool" onclick="openFxSheet('bgm')"><span>🎵</span>Background মিউজিক</button>
+              <button class="tool" onclick="toast('AI নয়েজ রিডাকশন চালু করা হয়েছে 🎚️')"><span>🎚️</span>নয়েজ ক্লিয়ার</button>
+              <button class="tool" onclick="generateAutoCaption()"><span>💬</span>বাংলা Caption (STT)</button>
+              <button class="tool" onclick="generateAiSummary()"><span>🤖</span>AI Summary</button>
+              <button class="tool" onclick="toast('অডিও ট্রিম টুল খোলা হয়েছে ✂️')"><span>✂️</span>Trim Audio</button>
+              <button class="tool" onclick="toast('কভার ফটো সিলেক্ট করুন 🖼️')"><span>🖼️</span>Cover</button>
+              <button class="tool" onclick="toast('Schedule সেট করুন 🗓️')"><span>🗓️</span>Schedule</button>
+            </div>
+
+            <div style="padding:20px 20px 0">
+              <div class="field" style="font-size:15px">
+                <span>📝</span>
+                <input id="postTitleInput" placeholder="Title দিন — যেমন: বৃষ্টির দিনে এক কাপ চা">
+              </div>
+              <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+                <span class="chip hot">#গল্প</span>
+                <span class="chip">+ টপিক যোগ করুন</span>
+                <span class="chip">🌍 Public</span>
+                <span class="chip">⭕ Voice Circle</span>
+              </div>
+              <button class="btn btn-primary" style="margin-top:20px" onclick="publishPost()">Publish করুন →</button>
+              <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:10px">Adaptive Fast Upload • কম ইন্টারনেটেও চলবে</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= 8. LIVE ROOMS & STAGE ================= -->
+        <div class="screen" id="s-live">
+          <div class="appbar">
+            <div style="flex:1">
+              <div class="sub">🔴 LiveStage Audio</div>
+              <h1>Live Audio Rooms</h1>
+            </div>
+            <button class="icon-btn" onclick="toast('নতুন Room শিডিউল করুন 🗓️')">🗓️</button>
+            <button class="icon-btn" onclick="toast('নতুন লাইভ রুম তৈরি হচ্ছে')">＋</button>
+          </div>
+
+          <div class="scroll">
+            <div class="live-hero">
+              <span class="chip" style="background:#fff;color:#0E7A6D;font-weight:900">● LIVE • ৩৪২ জন শুনছেন</span>
+              <h3 style="margin:12px 0 6px;font-size:21px;font-weight:900">বাংলা সাহিত্য আড্ডা — কবিতা ও কথা</h3>
+              <p style="margin:0;font-size:14px;opacity:.92">Host: Arif Rahman • ৪ জন স্পিকার স্টেজে আছেন</p>
+              <button class="btn" style="background:#fff;color:#074740;margin-top:16px;padding:13px;font-weight:900" onclick="go('s-room')">
+                🎧 স্টেজে প্রবেশ করুন
+              </button>
+            </div>
+
+            <div class="vcard">
+              <div class="vc-top">
+                <div class="avatar" style="width:46px;height:46px;background:var(--accent-gradient)">TH</div>
+                <div style="flex:1">
+                  <b style="font-size:15px">Startup গল্প: শূন্য থেকে শুরু করার অভিজ্ঞতা</b><br>
+                  <span style="font-size:12px;color:var(--muted)">Tanvir Hasan • Business &amp; Tech</span>
+                </div>
+                <span class="chip hot">● LIVE 128</span>
+              </div>
+              <button class="btn btn-dark" style="margin-top:14px;padding:12px" onclick="go('s-room')">Join Room</button>
+            </div>
+
+            <div class="vcard">
+              <div class="vc-top">
+                <div class="avatar" style="width:46px;height:46px;background:var(--teal-gradient)">NS</div>
+                <div style="flex:1">
+                  <b style="font-size:15px">Spoken English Daily Practice Club</b><br>
+                  <span style="font-size:12px;color:var(--muted)">Nusrat Jahan • রাত ৯:০০ টায়</span>
+                </div>
+                <span class="chip">আজ 9 PM</span>
+              </div>
+              <button class="btn btn-ghost" style="margin-top:14px;padding:12px" onclick="toast('Reminder সেট করা হয়েছে 🔔')">🔔 Remind Me</button>
+            </div>
+            <div style="height:14px"></div>
+          </div>
+        </div>
+
+        <!-- ================= 8B. LIVE ROOM DETAIL ================= -->
+        <div class="screen" id="s-room">
+          <div class="appbar">
+            <button class="icon-btn" onclick="go('s-live')">←</button>
+            <div style="flex:1">
+              <h1 style="font-size:19px">বাংলা সাহিত্য আড্ডা</h1>
+              <div class="sub">🔴 LIVE • ৩৪২ জন লিসেনার • Topic Stage</div>
+            </div>
+            <span class="chip hot">REC • Live</span>
+          </div>
+
+          <div class="scroll">
+            <div class="speakers">
+              <div class="speaker">
+                <div class="avatar" style="width:68px;height:68px;background:var(--accent-gradient);font-size:20px">
+                  <span class="ring"></span>AR
+                </div>
+                <small>Arif</small><span>Host 🎙️</span>
+              </div>
+              <div class="speaker">
+                <div class="avatar" style="width:68px;height:68px;background:var(--teal-gradient);font-size:20px">NS</div>
+                <small>Nusrat</small><span>Speaker</span>
+              </div>
+              <div class="speaker">
+                <div class="avatar" style="width:68px;height:68px;background:#3D2B1E;font-size:20px">TH</div>
+                <small>Tanvir</small><span>Speaker</span>
+              </div>
+              <div class="speaker">
+                <div class="avatar" style="width:68px;height:68px;background:var(--gold-gradient);font-size:20px">SR</div>
+                <small>Sadia</small><span>Speaker</span>
+              </div>
+              <div class="speaker">
+                <div class="avatar" style="width:68px;height:68px;background:#7C3AED;font-size:20px">MH</div>
+                <small>Mehedi</small><span>Audience</span>
+              </div>
+              <div class="speaker">
+                <div class="avatar" style="width:68px;height:68px;background:#B03A5B;font-size:20px">FA</div>
+                <small>Farhana</small><span>Audience</span>
+              </div>
+            </div>
+
+            <div style="padding:0 20px">
+              <button class="hand-btn" onclick="toast('✋ হাত তুলেছেন — হোস্টের অনুমতির পর আপনি কথা বলতে পারবেন')">
+                ✋ Raise Hand — কথা বলতে চাই
+              </button>
+            </div>
+
+            <!-- Live Poll Widget -->
+            <div class="vcard">
+              <b style="font-size:15px">🗳️ লাইভ পোল: পরের কবিতাটি কার হোক?</b>
+              <div style="display:grid;gap:8px;margin-top:12px" id="pollOptions">
+                <button class="ftab active" style="text-align:left;display:flex;justify-content:space-between" onclick="votePoll(this,'৫৮%')">
+                  <span>১. রবীন্দ্রনাথ ঠাকুর</span><b>58%</b>
+                </button>
+                <button class="ftab" style="text-align:left;display:flex;justify-content:space-between" onclick="votePoll(this,'২৭%')">
+                  <span>২. কাজী নজরুল ইসলাম</span><b>27%</b>
+                </button>
+                <button class="ftab" style="text-align:left;display:flex;justify-content:space-between" onclick="votePoll(this,'১৫%')">
+                  <span>৩. জীবনানন্দ দাশ</span><b>15%</b>
+                </button>
+              </div>
+            </div>
+
+            <div class="vcard" style="padding-bottom:14px">
+              <b style="font-size:15px">💬 স্টেজ চ্যাট</b>
+              <div id="roomChatHistory" style="margin-top:10px;font-size:14px;line-height:1.6">
+                <p><b>Farhana:</b> আরিফ ভাইয়ের আবৃত্তিটা অসাধারণ হয়েছে! 👏</p>
+                <p><b>Mehedi:</b> পরের গানটা কখন গাইবেন? 🎵</p>
+              </div>
+            </div>
+            <div style="height:14px"></div>
+          </div>
+
+          <div class="chat-input">
+            <input id="roomMsgInput" placeholder="স্টেজে মেসেজ লিখুন...">
+            <button class="mic-btn" onclick="toast('ভয়েস রিকোয়েস্ট পাঠানো হয়েছে')">🎙️</button>
+            <button class="btn btn-primary" style="width:auto;padding:11px 20px" onclick="sendRoomMsg()">Send</button>
+          </div>
+        </div>
+
+        <!-- ================= 9. MESSAGES INBOX ================= -->
+        <div class="screen" id="s-messages">
+          <div class="appbar">
+            <button class="icon-btn" onclick="go('s-home')">←</button>
+            <div style="flex:1">
+              <h1>Messages</h1>
+              <div class="sub">ভয়েস মেসেঞ্জার ও অডিও কল</div>
+            </div>
+            <button class="icon-btn" onclick="toast('নতুন গ্রুপ চ্যাট তৈরি করুন 👥')">＋</button>
+          </div>
+
+          <div class="searchbar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span>কথোপকথন খুঁজুন...</span>
+          </div>
+
+          <div class="scroll" style="padding-top:10px">
+            <button class="chat-item" onclick="go('s-chat')">
+              <div class="avatar" style="width:54px;height:54px;background:var(--teal-gradient)">NS</div>
+              <div style="flex:1;min-width:0">
+                <b style="font-size:15.5px">Nusrat Jahan</b><br>
+                <span style="font-size:13.5px;color:var(--muted)">🎙️ Voice note • 0:24</span>
+              </div>
+              <div style="text-align:right">
+                <span style="font-size:12px;color:var(--muted)">২ মি.</span>
+                <div class="unread">২</div>
+              </div>
+            </button>
+
+            <button class="chat-item" onclick="go('s-chat')">
+              <div class="avatar" style="width:54px;height:54px;background:var(--accent-gradient)">👥</div>
+              <div style="flex:1;min-width:0">
+                <b style="font-size:15.5px">গল্পের আসর (গ্রুপ)</b><br>
+                <span style="font-size:13.5px;color:var(--muted)">Arif: কাল রাত ৯টায় লাইভ রুম 🎙️</span>
+              </div>
+              <div style="text-align:right">
+                <span style="font-size:12px;color:var(--muted)">২৫ মি.</span>
+                <div class="unread">৫</div>
+              </div>
+            </button>
+
+            <button class="chat-item" onclick="go('s-chat')">
+              <div class="avatar" style="width:54px;height:54px;background:linear-gradient(135deg,#7C3AED,#3B0764)">TH</div>
+              <div style="flex:1;min-width:0">
+                <b style="font-size:15.5px">Tanvir Hasan</b><br>
+                <span style="font-size:13.5px;color:var(--muted)">Duet-টা দারুণ হয়েছে!</span>
+              </div>
+              <span style="font-size:12px;color:var(--muted)">১ ঘণ্টা</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ================= 9B. DIRECT CHAT ================= -->
+        <div class="screen" id="s-chat">
+          <div class="appbar" style="border-bottom:1px solid var(--line)">
+            <button class="icon-btn" onclick="go('s-messages')">←</button>
+            <div class="avatar" style="width:44px;height:44px;background:var(--teal-gradient)">NS</div>
+            <div style="flex:1">
+              <b style="font-size:16px">Nusrat Jahan</b>
+              <div class="sub" style="color:var(--teal)">● Active Now</div>
+            </div>
+            <button class="icon-btn" onclick="startCall('audio')">📞</button>
+            <button class="icon-btn" onclick="startCall('video')">📹</button>
+          </div>
+
+          <div class="scroll" id="chatScroll" style="padding-top:16px">
+            <div class="bubble-row"><div class="bubble them">আসসালামু আলাইকুম! কালকের Duet চ্যালেঞ্জে অংশ নিচ্ছেন তো? 🎙️</div></div>
+            <div class="bubble-row"><div class="bubble me">অবশ্যই! আমি আজ রাতেই রেকর্ড করে পাঠাব।</div></div>
+            
+            <div class="bubble-row">
+              <div class="bubble them">
+                <div style="display:flex;align-items:center;gap:10px">
+                  <button class="play-btn sm" onclick="togglePlay(this)">▶</button>
+                  <div class="wave" style="height:28px">
+                    <i style="height:10px;background:#0E7A6D"></i>
+                    <i style="height:20px;background:#0E7A6D"></i>
+                    <i style="height:14px;background:#0E7A6D"></i>
+                    <i style="height:24px;background:#0E7A6D"></i>
+                    <i style="height:10px;background:#0E7A6D"></i>
+                    <i style="height:18px;background:#0E7A6D"></i>
+                  </div>
+                  <b style="font-size:13px">0:24</b>
+                </div>
+                <span style="font-size:12px;color:var(--muted);display:block;margin-top:4px">
+                  Auto-Caption: "শুনে দেখুন, intro কেমন হলো"
+                </span>
+              </div>
+            </div>
+
+            <div class="bubble-row"><div class="bubble me">অসাধারণ হয়েছে! 🔥 আমি এর সাথে আমার verse যুক্ত করছি।</div></div>
+          </div>
+
+          <div class="chat-input">
+            <button class="icon-btn" onclick="toast('ছবি বা ফাইল সিলেক্ট করুন 📎')">📎</button>
+            <input id="directMsgInput" placeholder="মেসেজ লিখুন..." onkeypress="if(event.key==='Enter')sendDirectMsg()">
+            <button class="mic-btn" onclick="recordAndSendVoiceMsg()">🎙️</button>
+          </div>
+        </div>
+
+        <!-- ================= 10. NOTIFICATIONS ================= -->
+        <div class="screen" id="s-notif">
+          <div class="appbar">
+            <button class="icon-btn" onclick="go('s-home')">←</button>
+            <div style="flex:1">
+              <h1>Notifications</h1>
+              <div class="sub">সব নতুন আপডেট</div>
+            </div>
+            <button class="icon-btn" onclick="toast('সব নোটিফিকেশন পড়া হয়েছে ✓')">✓</button>
+          </div>
+
+          <div class="scroll">
+            <div class="list-item" style="background:rgba(255,102,34,0.08)">
+              <div class="avatar" style="width:48px;height:48px;background:var(--accent-gradient)">AR</div>
+              <div>
+                <p style="font-size:14.5px;line-height:1.4"><b>Arif Rahman</b> আপনার পোস্টে ভয়েস রিপ্লাই দিয়েছেন 🎙️</p>
+                <span style="font-size:12px;color:var(--muted)">২ মিনিট আগে • "বৃষ্টির গল্প"</span>
+              </div>
+            </div>
+
+            <div class="list-item" style="background:rgba(255,102,34,0.08)">
+              <div class="avatar" style="width:48px;height:48px;background:var(--teal-gradient)">NS</div>
+              <div>
+                <p style="font-size:14.5px;line-height:1.4"><b>Nusrat Jahan</b> আপনাকে Follow করা শুরু করেছেন</p>
+                <span style="font-size:12px;color:var(--muted)">১৮ মিনিট আগে</span>
+              </div>
+            </div>
+
+            <div class="list-item">
+              <div class="avatar" style="width:48px;height:48px;background:var(--red)">🔴</div>
+              <div>
+                <p style="font-size:14.5px;line-height:1.4"><b>বাংলা সাহিত্য আড্ডা</b> লাইভ রুম শুরু হয়েছে — ৩৪০ জন শুনছেন</p>
+                <span style="font-size:12px;color:var(--muted)">৩৫ মিনিট আগে</span>
+              </div>
+            </div>
+
+            <div class="list-item">
+              <div class="avatar" style="width:48px;height:48px;background:var(--gold-gradient)">🏆</div>
+              <div>
+                <p style="font-size:14.5px;line-height:1.4">Voice Challenge-এ আপনার পোস্ট <b>Top 10</b>-এ জায়গা পেয়েছে!</p>
+                <span style="font-size:12px;color:var(--muted)">২ ঘণ্টা আগে</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= 11. LEARNING ================= -->
+        <div class="screen" id="s-learn">
+          <div class="appbar">
+            <button class="icon-btn" onclick="go('s-home')">←</button>
+            <div style="flex:1">
+              <h1>Learning</h1>
+              <div class="sub">শুনে শিখুন • Audio Courses</div>
+            </div>
+            <span class="chip">🔥 ১২ দিনের Streak</span>
+          </div>
+
+          <div class="scroll">
+            <div class="vcard" style="padding:0;overflow:hidden">
+              <div style="background:linear-gradient(140deg,#0E7A6D,#043E37);padding:22px;color:#fff">
+                <span class="chip" style="background:#fff;color:#043E37;font-weight:900">চলমান কোর্স</span>
+                <h3 style="margin:12px 0 4px;font-size:20px;font-weight:900">Spoken English — 30 Days Challenge</h3>
+                <p style="font-size:13.5px;opacity:.92">Instructor: Nusrat Jahan • প্রতিদিন ১০ মিনিট</p>
+              </div>
+              <div style="padding:18px">
+                <div style="display:flex;justify-content:space-between;font-size:13.5px;font-weight:800">
+                  <span>Day 12 of 30 সম্পন্ন</span>
+                  <span style="color:var(--teal)">40% Complete</span>
+                </div>
+                <div style="height:7px;background:rgba(255,255,255,0.12);border-radius:99px;margin:10px 0 16px;overflow:hidden">
+                  <div style="width:40%;height:100%;background:var(--teal-gradient)"></div>
+                </div>
+                <button class="btn btn-teal" style="padding:13px" onclick="openPlayer()">▶ &nbsp;Day 13 — ক্লাস শুরু করুন</button>
+              </div>
+            </div>
+
+            <div class="vcard" style="padding:0;overflow:hidden">
+              <div style="background:linear-gradient(140deg,#E85A24,#7E2503);padding:22px;color:#fff">
+                <span class="chip" style="background:#fff;color:#7E2503;font-weight:900">পডকাস্ট সিরিজ</span>
+                <h3 style="margin:12px 0 4px;font-size:20px;font-weight:900">বাংলাদেশের ইতিহাস ও ঐতিহ্য</h3>
+                <p style="font-size:13.5px;opacity:.92">২৪ পর্ব • প্রতি শুক্রবার নতুন পর্ব</p>
+              </div>
+              <div style="padding:18px">
+                <button class="btn btn-ghost" style="padding:13px" onclick="openPlayer()">🎧 প্রথম পর্ব শুনুন</button>
+              </div>
+            </div>
+            <div style="height:14px"></div>
+          </div>
+        </div>
+
+        <!-- ================= 12. PROFILE & CREATOR STUDIO ================= -->
+        <div class="screen" id="s-profile">
+          <div class="appbar">
+            <div style="flex:1"><h1>@arif.voices</h1></div>
+            <button class="icon-btn" onclick="openDrawer()" title="সব স্ক্রিন">☰</button>
+            <button class="icon-btn" onclick="go('s-settings')">⚙️</button>
+          </div>
+
+          <div class="scroll">
+            <div style="text-align:center;padding:18px 20px 10px">
+              <div class="avatar" style="width:92px;height:92px;font-size:26px;background:var(--accent-gradient);margin:0 auto;box-shadow:var(--shadow-glow)">AR</div>
+              <h3 style="margin:14px 0 3px;font-size:21px;font-weight:900">Arif Rahman <span style="color:var(--teal)">✓</span></h3>
+              <p style="margin:0;color:var(--muted);font-size:14px">গল্পকার ও ভয়েস আর্টিস্ট • ঢাকা, বাংলাদেশ</p>
+
+              <button class="btn btn-dark" style="width:auto;margin:16px auto 0;padding:11px 24px;font-size:14px" onclick="openPlayer()">
+                ▶ &nbsp;🎙️ Voice Bio শুনুন (0:42)
+              </button>
+
+              <div style="display:flex;justify-content:center;gap:34px;padding:18px 0 6px;font-size:13.5px">
+                <span><b style="font-size:19px;display:block;font-weight:900">248</b>পোস্ট</span>
+                <span><b style="font-size:19px;display:block;font-weight:900">84k</b>ফলোয়ার</span>
+                <span><b style="font-size:19px;display:block;font-weight:900">312</b>ফলোয়িং</span>
+                <span><b style="font-size:19px;display:block;font-weight:900">1.2M</b>প্লেস</span>
+              </div>
+
+              <div style="display:flex;gap:10px;justify-content:center;margin-top:14px">
+                <button class="btn btn-primary" style="width:auto;padding:11px 26px" onclick="openEditProfile()">Edit Profile</button>
+                <button class="btn btn-ghost" style="width:auto;padding:11px 22px" onclick="openShare('Arif Rahman Profile')">Share</button>
+              </div>
+            </div>
+
+            <!-- Creator Studio Card -->
+            <div style="margin:12px 20px 0;background:linear-gradient(140deg,#241812,#3D1F0E);border:1px solid rgba(242,189,68,0.3);border-radius:24px;padding:20px;box-shadow:var(--specular-card)">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <b style="font-size:15.5px">💰 Creator Studio &amp; Earnings</b>
+                <span class="chip gold">এই মাস</span>
+              </div>
+              <div style="display:flex;gap:26px;margin-top:14px">
+                <span><b style="font-size:22px;display:block;color:var(--gold);font-weight:900">৳ ২৪,৫০০</b><span style="font-size:12px;opacity:.8">অনুমোদিত আয়</span></span>
+                <span><b style="font-size:22px;display:block;font-weight:900">৪৮k</b><span style="font-size:12px;opacity:.8">শুনার ঘণ্টা</span></span>
+                <span><b style="font-size:22px;display:block;font-weight:900">Top 5%</b><span style="font-size:12px;opacity:.8">র‍্যাংক</span></span>
+              </div>
+              <button class="btn" style="background:var(--gold-gradient);color:#120B08;margin-top:16px;padding:13px;font-weight:900" onclick="openCreatorStudio()">
+                Creator Analytics ড্যাশবোর্ড খুলুন →
+              </button>
+            </div>
+
+            <div class="feed-tabs" style="justify-content:center;margin-top:12px">
+              <button class="ftab active" onclick="ftab(this)">Voice Posts</button>
+              <button class="ftab" onclick="ftab(this)">Videos</button>
+              <button class="ftab" onclick="ftab(this)">Saved</button>
+            </div>
+
+            <div class="vcard">
+              <div class="vc-top"><span class="chip hot">📌 Pinned Post</span></div>
+              <p class="vc-title">যেভাবে শুরু হয়েছিল আমার ভয়েস কনটেন্ট জার্নি</p>
+              <div class="play-row">
+                <button class="play-btn sm" onclick="togglePlay(this)">▶</button>
+                <b style="font-size:13.5px">4:12</b>
+                <span style="font-size:12px;color:var(--muted)">312k plays • 8.4k likes</span>
+              </div>
+            </div>
+            <div style="height:14px"></div>
+          </div>
+        </div>
+
+        <!-- ================= 13. SETTINGS ================= -->
+        <div class="screen" id="s-settings">
+          <div class="appbar">
+            <button class="icon-btn" onclick="go('s-profile')">←</button>
+            <div style="flex:1">
+              <h1>Settings</h1>
+              <div class="sub">অ্যাকাউন্ট, প্লেব্যাক ও প্রাইভেসি</div>
+            </div>
+          </div>
+
+          <div class="scroll">
+            <button class="list-item" style="width:100%;text-align:left" onclick="toast('Account Settings')">
+              <span>👤</span>
+              <span style="flex:1;font-weight:800">Account &amp; Security</span>
+              <span style="color:var(--muted)">›</span>
+            </button>
+            <button class="list-item" style="width:100%;text-align:left" onclick="toast('Audio Quality: Lossless HD')">
+              <span>🎚️</span>
+              <div style="flex:1"><b style="display:block">Audio Quality</b><span style="font-size:12px;color:var(--muted)">Spatial Audio (Opus 128kbps)</span></div>
+              <span style="color:var(--muted)">›</span>
+            </button>
+            <button class="list-item" style="width:100%;text-align:left" onclick="toggleDataSaver(this)">
+              <span>📶</span>
+              <div style="flex:1"><b style="display:block">Data Saver (কম ইন্টারনেটে সাশ্রয়)</b><span style="font-size:12px;color:var(--muted)">মোবাইল ডেটা অপ্টিমাইজড</span></div>
+              <span class="chip" id="dsStatus">চালু আছে</span>
+            </button>
+            <button class="list-item" style="width:100%;text-align:left" onclick="toast('ভাষা পরিবর্তন: বাংলা নির্বাচিত')">
+              <span>🌍</span>
+              <div style="flex:1"><b style="display:block">App Language</b><span style="font-size:12px;color:var(--muted)">বাংলা (Bengali)</span></div>
+              <span style="color:var(--muted)">›</span>
+            </button>
+            <button class="list-item" style="width:100%;text-align:left" onclick="toast('ক্যাশে সাফ হয়েছে (38 MB) 🧹')">
+              <span>🧹</span>
+              <span style="flex:1;font-weight:800">Clear Cache (অপ্রয়োজনীয় ফাইল সাফ)</span>
+              <span style="font-size:12px;color:var(--muted)">38 MB</span>
+            </button>
+            <button class="list-item" style="width:100%;text-align:left;color:var(--red)" onclick="go('s-login');toast('লগআউট করা হয়েছে')">
+              <span>🚪</span>
+              <span style="flex:1;font-weight:800">Log Out</span>
+            </button>
+
+            <p style="text-align:center;font-size:12.5px;color:var(--muted);padding:26px 20px;line-height:1.6">
+              KothaMala v2.5 Ultra Edition<br>
+              Made with ❤️ for Bangladeshi Voices
+            </p>
+          </div>
+        </div>
+
+      </div><!-- /screens -->
+
+      <!-- ================= ULTRA-PREMIUM BOTTOM NAV ================= -->
+      <nav class="bottom-nav hidden" id="bottomNav">
+        <button data-nav="s-home" class="active" onclick="go('s-home')">
+          <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          <span>হোম</span>
+        </button>
+        <button data-nav="s-video" onclick="go('s-video')">
+          <svg viewBox="0 0 24 24"><path d="m10 8 6 4-6 4zm11-5H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14z"/></svg>
+          <span>শর্টস</span>
+        </button>
+        <button class="create-tab" onclick="go('s-create')">
+          <span class="ni">＋</span>
+          <span>তৈরি</span>
+        </button>
+        <button data-nav="s-live" onclick="go('s-live')">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2a10 10 0 0 0-7.07 17.07l1.41-1.41A8 8 0 1 1 12 20a7.94 7.94 0 0 1-5.66-2.34L4.93 19.07A10 10 0 1 0 12 2z"/></svg>
+          <span>লাইভ</span>
+        </button>
+        <button data-nav="s-profile" onclick="go('s-profile')">
+          <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          <span>প্রোফাইল</span>
+        </button>
+      </nav>
+
+      <!-- HOME INDICATOR BAR -->
+      <div class="home-indicator"></div>
+
+      <!-- ================= FULL AUDIO PLAYER SHEET ================= -->
+      <div class="player-sheet" id="playerSheet">
+        <div style="display:flex;align-items:center">
+          <button style="font-size:26px;color:#FAF3EC;padding:4px 8px" onclick="closePlayer()">⌄</button>
+          <div style="flex:1;text-align:center">
+            <b style="font-size:12.5px;letter-spacing:.1em;color:var(--accent)">NOW PLAYING</b>
+            <div style="font-size:11.5px;opacity:.7">KothaMala Spatial Voice Stream</div>
+          </div>
+          <button style="font-size:20px;color:#FAF3EC" onclick="openShare('Now Playing Voice')">↗</button>
+        </div>
+
+        <div style="text-align:center;margin-top:28px">
+          <div class="avatar" id="pAvatar" style="width:108px;height:108px;font-size:32px;background:var(--accent-gradient);margin:0 auto;box-shadow:var(--shadow-glow)">AR</div>
+          <h3 id="pTrackTitle" style="margin:18px 0 4px;font-size:21px;font-weight:900">ঢাকার বৃষ্টি আর আমার প্রথম চাকরির গল্প</h3>
+          <p id="pArtistName" style="margin:0;opacity:.75;font-size:14px">Arif Rahman • @arif.voices • #গল্প</p>
+        </div>
+
+        <div class="big-wave" id="playerWave" onclick="seekAudio(event)"></div>
+
+        <div class="scrubber-track" id="scrubberTrack" onclick="seekAudio(event)">
+          <div class="scrubber-fill" id="pBar"></div>
+          <div class="scrubber-thumb" id="pThumb"></div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;font-size:12px;opacity:.75;margin-top:8px">
+          <span id="pCur">1:12</span>
+          <span id="pDur">2:34</span>
+        </div>
+
+        <div class="p-controls">
+          <button onclick="toast('আগের অডিও')">⏮</button>
+          <button onclick="seekRel(-15)">⏪</button>
+          <button class="main" id="pMain" onclick="playerToggle()">❚❚</button>
+          <button onclick="seekRel(15)">⏩</button>
+          <button onclick="toast('পরের অডিও')">⏭</button>
+        </div>
+
+        <div style="display:flex;justify-content:space-around;margin-top:28px;font-size:13px;font-weight:800">
+          <button id="speedBtn" onclick="toggleSpeed()">⏱ 1.0x</button>
+          <button onclick="toast('স্লিপ টাইমার: ৩০ মিনিট পর বন্ধ হবে 🌙')">🌙 Timer</button>
+          <button onclick="toast('প্লেলিস্টে যোগ করা হয়েছে 🎶')">🎶 Playlist</button>
+          <button onclick="toast('অফলাইনে ডাউনলোড সম্পূর্ণ হয়েছে ⬇️')">⬇️ Save</button>
+        </div>
+
+        <button class="btn btn-primary" style="margin-top:auto" onclick="closePlayer();go('s-create');toast('এই অডিওতে ভয়েস রিপ্লাই দিন')">
+          🎙️ Voice Reply দিন (Thread-এ যোগ হবে)
+        </button>
+      </div>
+
+      <!-- ================= COMMENTS BOTTOM SHEET ================= -->
+      <div class="modal-overlay" id="commentsSheet" onclick="if(event.target===this)closeComments()">
+        <div class="modal-sheet">
+          <div class="sheet-bar"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <b style="font-size:17.5px;font-weight:900" id="commHeader">কমেন্টস ও ভয়েস রিপ্লাই (48)</b>
+            <button onclick="closeComments()" style="font-size:18px">✕</button>
+          </div>
+          <div class="scroll" id="commentsList" style="max-height:340px">
+            <div class="list-item" style="padding:10px 0">
+              <div class="avatar" style="width:40px;height:40px;background:var(--teal-gradient)">NS</div>
+              <div style="flex:1">
+                <b style="font-size:14px">Nusrat Jahan</b> <span style="font-size:11px;color:var(--muted)">• ৫ মিনিট আগে</span>
+                <p style="font-size:14px;margin-top:2px">বৃষ্টির দিনে চা আর খিচুড়ির চেয়ে আরামদায়ক আর কিছু নেই! 🌧️</p>
+              </div>
+              <button onclick="like(this)" style="font-size:13px">♥ 24</button>
+            </div>
+            <div class="list-item" style="padding:10px 0">
+              <div class="avatar" style="width:40px;height:40px;background:linear-gradient(135deg,#7C3AED,#3B0764)">TH</div>
+              <div style="flex:1">
+                <b style="font-size:14px">Tanvir Hasan</b> <span style="font-size:11px;color:var(--muted)">• ১৫ মিনিট আগে</span>
+                <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+                  <button class="play-btn sm" onclick="togglePlay(this)">▶</button>
+                  <span class="chip">🎙️ Voice Comment • 0:18</span>
+                </div>
+              </div>
+              <button onclick="like(this)" style="font-size:13px">♥ 12</button>
+            </div>
+          </div>
+          <div class="chat-input" style="padding:12px 0 0">
+            <input id="commInput" placeholder="ভয়েস বা টেক্সট কমেন্ট লিখুন...">
+            <button class="mic-btn" onclick="addVoiceComment()">🎙️</button>
+            <button class="btn btn-primary" style="width:auto;padding:11px 20px" onclick="addTextComment()">Send</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= SHARE BOTTOM SHEET ================= -->
+      <div class="modal-overlay" id="shareSheet" onclick="if(event.target===this)closeShare()">
+        <div class="modal-sheet">
+          <div class="sheet-bar"></div>
+          <b style="font-size:18px;font-weight:900;margin-bottom:18px;text-align:center;display:block">বন্ধুদের সাথে শেয়ার করুন</b>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center">
+            <button onclick="toast('লিংক কপি করা হয়েছে 📋');closeShare()">
+              <div class="avatar" style="width:56px;height:56px;background:var(--surface-solid);font-size:24px;margin:0 auto 8px">📋</div>
+              <span style="font-size:12px;font-weight:800">Copy Link</span>
+            </button>
+            <button onclick="toast('WhatsApp-এ পাঠানো হচ্ছে...');closeShare()">
+              <div class="avatar" style="width:56px;height:56px;background:#25D366;font-size:24px;margin:0 auto 8px">💬</div>
+              <span style="font-size:12px;font-weight:800">WhatsApp</span>
+            </button>
+            <button onclick="toast('Messenger-এ শেয়ার হচ্ছে...');closeShare()">
+              <div class="avatar" style="width:56px;height:56px;background:#0084FF;font-size:24px;margin:0 auto 8px">⚡</div>
+              <span style="font-size:12px;font-weight:800">Messenger</span>
+            </button>
+            <button onclick="toast('অডিও ফাইল ডাউনলোড হচ্ছে ⬇️');closeShare()">
+              <div class="avatar" style="width:56px;height:56px;background:var(--accent-gradient);font-size:24px;margin:0 auto 8px">📥</div>
+              <span style="font-size:12px;font-weight:800">Download</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= CALL SCREEN MODAL ================= -->
+      <div id="callModal">
+        <div style="text-align:center">
+          <span class="chip" style="background:rgba(255,255,255,0.16);color:#fff">🔒 256-Bit Encrypted HD Voice</span>
+          <h2 style="font-size:26px;margin:20px 0 4px;font-weight:900">Nusrat Jahan</h2>
+          <p style="opacity:.8;margin:0;font-size:14.5px" id="callStatusText">কলিং হচ্ছে... (Connecting)</p>
+        </div>
+
+        <div class="call-avatar">NS</div>
+
+        <div class="call-actions">
+          <button class="call-btn" onclick="toast('মাইক্রোফোন মিউট করা হয়েছে')">🎤</button>
+          <button class="call-btn" onclick="toast('লাউডস্পিকার চালু')">🔊</button>
+          <button class="call-btn end" onclick="endCall()">📞</button>
+        </div>
+      </div>
+
+      <!-- ================= STORY VIEWER ================= -->
+      <div id="storyViewer">
+        <div class="story-bars">
+          <div class="story-bar active"><i></i></div>
+          <div class="story-bar"><i></i></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="avatar" id="svAvatar" style="width:42px;height:42px;background:var(--accent-gradient)">AR</div>
+          <div style="flex:1">
+            <b id="svName" style="font-size:15px">Arif Rahman</b>
+            <div style="font-size:12px;opacity:.7">২ ঘণ্টা আগে</div>
+          </div>
+          <button onclick="closeStory()" style="font-size:24px">✕</button>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px">
+          <div class="avatar" style="width:96px;height:96px;font-size:40px;background:rgba(255,255,255,0.18);margin-bottom:22px">🎙️</div>
+          <h2 id="svStoryText" style="font-size:24px;line-height:1.45;font-weight:900">"ঢাকার বৃষ্টি আর পুরোনো দিনের স্মৃতি..."</h2>
+          <div class="wave" style="margin-top:22px">
+            <i style="height:22px;background:#fff"></i><i style="height:44px;background:#fff"></i>
+            <i style="height:26px;background:#fff"></i><i style="height:52px;background:#fff"></i>
+            <i style="height:20px;background:#fff"></i>
+          </div>
+        </div>
+        <div class="chat-input" style="background:transparent;border:none">
+          <input placeholder="রিপ্লাই পাঠান..." style="background:rgba(255,255,255,0.18);border:none;color:#fff">
+          <button class="mic-btn" onclick="toast('স্টোরিতে ভয়েস মেসেজ পাঠানো হয়েছে ✓');closeStory()">🎙️</button>
+        </div>
+      </div>
+
+      <!-- ================= AUDIO FX & BGM MODAL ================= -->
+      <div class="modal-overlay" id="audioFxSheet" onclick="if(event.target===this)closeFxSheet()">
+        <div class="modal-sheet">
+          <div class="sheet-bar"></div>
+          <b style="font-size:18px;font-weight:900;margin-bottom:16px" id="fxModalTitle">ভয়েস ইফেক্টস বেছে নিন</b>
+          <div class="cat-grid" id="fxGrid" style="padding:0">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= CREATOR STUDIO MODAL ================= -->
+      <div class="modal-overlay" id="creatorStudioModal" onclick="if(event.target===this)closeCreatorStudio()">
+        <div class="modal-sheet">
+          <div class="sheet-bar"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <b style="font-size:19px;font-weight:900">💰 Creator Studio — আয় ও অ্যানালিটিক্স</b>
+            <button onclick="closeCreatorStudio()" style="font-size:18px">✕</button>
+          </div>
+          <div class="scroll">
+            <div style="background:var(--surface-solid);border:1px solid rgba(242,189,68,0.3);padding:18px;border-radius:22px;margin-bottom:14px">
+              <span style="font-size:13px;color:var(--muted)">মোট তোলার যোগ্য ব্যালেন্স (bKash / Nagad)</span>
+              <h2 style="font-size:32px;color:var(--gold);margin:6px 0 12px;font-weight:900">৳ ২৪,৫০০</h2>
+              <button class="btn btn-primary" onclick="toast('bKash নম্বরে পেমেন্ট রিকোয়েস্ট সফলভাবে জমা হয়েছে ✓')">টাকা তুলুন (Withdraw)</button>
+            </div>
+            <div style="font-size:14.5px;line-height:1.6">
+              <p>🎧 <b>৪,৮২০ জন</b> নিয়মিত আপনার পডকাস্ট শুনছেন</p>
+              <p>📈 <b>+38% বৃদ্ধি</b> গত ৩০ দিনের তুলনায়</p>
+              <p>⭐ KothaMala পার্টনার প্রোগ্রামে আপনি <b>Tier 1 Creator</b> হিসেবে স্বীকৃতি পেয়েছেন।</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= EDIT PROFILE MODAL ================= -->
+      <div class="modal-overlay" id="editProfileModal" onclick="if(event.target===this)closeEditProfile()">
+        <div class="modal-sheet">
+          <div class="sheet-bar"></div>
+          <b style="font-size:19px;font-weight:900;margin-bottom:16px">প্রোফাইল এডিট করুন</b>
+          <div style="display:grid;gap:14px">
+            <div><label style="font-size:12.5px;color:var(--muted)">পূর্ণ নাম</label><div class="field" style="padding:12px 16px"><input value="Arif Rahman"></div></div>
+            <div><label style="font-size:12.5px;color:var(--muted)">ইউজারনেম</label><div class="field" style="padding:12px 16px"><input value="@arif.voices"></div></div>
+            <div><label style="font-size:12.5px;color:var(--muted)">বায়ো</label><div class="field" style="padding:12px 16px"><input value="গল্পকার ও ভয়েস আর্টিস্ট • ঢাকা"></div></div>
+            <button class="btn btn-primary" style="margin-top:12px" onclick="toast('প্রোফাইল আপডেট সম্পন্ন হয়েছে ✓');closeEditProfile()">Save Changes</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= ALL SCREENS DRAWER (NAVIGATION) ================= -->
+      <div class="modal-overlay" id="drawer" onclick="if(event.target===this)closeDrawer()">
+        <div class="modal-sheet">
+          <div class="sheet-bar"></div>
+          <div style="display:flex;align-items:center;margin-bottom:16px">
+            <b style="font-size:18px;font-weight:900;flex:1">অ্যাপের সকল স্ক্রিন (A–Z)</b>
+            <button class="icon-btn" onclick="closeDrawer()">✕</button>
+          </div>
+          <div class="drawer-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+            <button class="tool" onclick="jump('s-splash')"><span>🚀</span>Splash</button>
+            <button class="tool" onclick="jump('s-onboard')"><span>👋</span>Onboard</button>
+            <button class="tool" onclick="jump('s-login')"><span>📱</span>Login</button>
+            <button class="tool" onclick="jump('s-home')"><span>🏠</span>Home</button>
+            <button class="tool" onclick="jump('s-video')"><span>▶️</span>Shorts</button>
+            <button class="tool" onclick="jump('s-explore')"><span>🧭</span>Explore</button>
+            <button class="tool" onclick="jump('s-create')"><span>🎙️</span>Create</button>
+            <button class="tool" onclick="jump('s-live')"><span>🔴</span>Live</button>
+            <button class="tool" onclick="jump('s-room')"><span>🎧</span>Stage</button>
+            <button class="tool" onclick="jump('s-messages')"><span>💬</span>Inbox</button>
+            <button class="tool" onclick="jump('s-chat')"><span>🗨️</span>Chat</button>
+            <button class="tool" onclick="jump('s-notif')"><span>🔔</span>Alerts</button>
+            <button class="tool" onclick="jump('s-learn')"><span>🎓</span>Learn</button>
+            <button class="tool" onclick="jump('s-profile')"><span>👤</span>Profile</button>
+            <button class="tool" onclick="jump('s-settings')"><span>⚙️</span>Settings</button>
+            <button class="tool" onclick="closeDrawer();openPlayer()"><span>🎵</span>Player</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast Notification -->
+      <div class="toast" id="toast"></div>
+
+    </div><!-- /app -->
+  </div><!-- /phone -->
+</div><!-- /phone-outer -->
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+var MAIN = ['s-home','s-video','s-explore','s-live','s-profile'];
+var current = 's-splash';
+var currentSpeed = 1.0;
+
+/* Clock updater */
+function updateClock(){
+  var d = new Date();
+  var h = d.getHours();
+  var m = String(d.getMinutes()).padStart(2,'0');
+  var el = document.getElementById('clockText');
+  if(el) el.textContent = h + ':' + m;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+/* Haptic simulation */
+function haptic(){
+  if(window.navigator && window.navigator.vibrate) {
+    try { window.navigator.vibrate(15); } catch(e){}
+  }
+}
+
+/* Dynamic Waveform Generation */
+function buildWaves(){
+  document.querySelectorAll('[data-wave]').forEach(function(w){
+    if(w.children.length) return;
+    var heights = [12,22,32,18,38,28,15,34,20,30,14,26,40,18,32,16,24,34,18,28,12,22,30,18,28,14,24,16,30,20];
+    heights.forEach(function(h,i){
+      var bar = document.createElement('i');
+      bar.style.height = h + 'px';
+      if(i < 12) bar.className = 'on';
+      w.appendChild(bar);
+    });
+  });
+
+  var rw = document.getElementById('recWave');
+  if(rw && !rw.children.length){
+    [16,28,20,38,24,46,18,32,26,40,14,30,22,36,16,28,20,34,14,26].forEach(function(h){
+      var b = document.createElement('i');
+      b.style.height = h + 'px';
+      rw.appendChild(b);
+    });
+  }
+
+  var pw = document.getElementById('playerWave');
+  if(pw && !pw.children.length){
+    for(var i=0; i<42; i++){
+      var b = document.createElement('i');
+      b.style.height = (22 + Math.round(Math.abs(Math.sin(i * 0.5)) * 84)) + 'px';
+      pw.appendChild(b);
+    }
+  }
+}
+
+/* Screen Navigation */
+function go(id){
+  haptic();
+  current = id;
+  document.getElementById('playerSheet').classList.remove('open','playing');
+  document.getElementById('drawer').classList.remove('open');
+  stopAudio();
+
+  document.querySelectorAll('.screen').forEach(function(s){
+    s.classList.toggle('active', s.id === id);
+  });
+
+  var nav = document.getElementById('bottomNav');
+  nav.classList.toggle('hidden', MAIN.indexOf(id) === -1);
+  document.querySelectorAll('#bottomNav [data-nav]').forEach(function(b){
+    b.classList.toggle('active', b.dataset.nav === id);
+  });
+
+  document.getElementById('statusbar').style.color = (id==='s-video') ? '#fff' : '';
+  document.getElementById('app').style.background = (id==='s-video') ? '#000' : '';
+  buildWaves();
+  var sc = document.querySelector('#' + id + ' .scroll');
+  if(sc) sc.scrollTop = 0;
+}
+
+/* Toast Message */
+function toast(msg){
+  haptic();
+  var t = document.getElementById('toast');
+  t.innerHTML = '✨ ' + msg;
+  t.classList.add('show');
+  clearTimeout(t._h);
+  t._h = setTimeout(function(){ t.classList.remove('show'); }, 2300);
+}
+
+/* Splash auto transition */
+setTimeout(function(){ if(current==='s-splash') go('s-onboard'); }, 1800);
+document.getElementById('s-splash').addEventListener('click', function(){ go('s-onboard'); });
+
+/* Onboarding */
+function obNext(n){
+  haptic();
+  document.querySelectorAll('.ob-slide').forEach(function(s){
+    s.classList.toggle('active', +s.dataset.ob === n);
+  });
+}
+
+/* LUXURY WEB AUDIO SYNTHESIZER */
+var AC = null, audioNodes = null;
+function startAudio(freqBase){
+  try{
+    if(!AC){
+      var Ctx = window.AudioContext || window.webkitAudioContext;
+      if(!Ctx) return;
+      AC = new Ctx();
+    }
+    if(AC.state === 'suspended') AC.resume();
+    if(audioNodes) return;
+    var base = freqBase || 220;
+    var t = AC.currentTime;
+    var g = AC.createGain();
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(0.065, t + 0.8);
+    g.connect(AC.destination);
+
+    var filter = AC.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 880;
+    filter.connect(g);
+
+    var o1 = AC.createOscillator(); o1.type = 'sine'; o1.frequency.value = base; o1.connect(filter);
+    var o2 = AC.createOscillator(); o2.type = 'triangle'; o2.frequency.value = base * 1.5;
+    var g2 = AC.createGain(); g2.gain.value = 0.35; o2.connect(g2); g2.connect(filter);
+
+    var lfo = AC.createOscillator(); lfo.frequency.value = 0.18;
+    var lg = AC.createGain(); lg.gain.value = 0.02;
+    lfo.connect(lg); lg.connect(g.gain);
+
+    o1.start(); o2.start(); lfo.start();
+    audioNodes = { g: g, os: [o1, o2, lfo] };
+  }catch(e){}
+}
+
+function stopAudio(){
+  if(!AC || !audioNodes) return;
+  var n = audioNodes;
+  audioNodes = null;
+  try{
+    var t = AC.currentTime;
+    n.g.gain.cancelScheduledValues(t);
+    n.g.gain.setValueAtTime(n.g.gain.value, t);
+    n.g.gain.linearRampToValueAtTime(0, t + 0.25);
+    setTimeout(function(){
+      n.os.forEach(function(o){ try{o.stop();}catch(e){} });
+      try{n.g.disconnect();}catch(e){}
+    }, 300);
+  }catch(e){}
+}
+
+/* Login Flow */
+function sendOtp(){
+  haptic();
+  document.getElementById('phoneStep').classList.add('hidden');
+  document.getElementById('otpStep').classList.remove('hidden');
+  toast('📩 ৪-সংখ্যার OTP কোড পাঠানো হয়েছে');
+  
+  var sec = 28;
+  var timerEl = document.getElementById('otpTimer');
+  var inv = setInterval(function(){
+    sec--;
+    if(timerEl) timerEl.textContent = '0:' + (sec<10 ? '0'+sec : sec);
+    if(sec <= 0) clearInterval(inv);
+  }, 1000);
+}
+function enterApp(){ go('s-home'); toast('স্বাগতম KothaMala-তে! 🎙️'); }
+
+/* Feed Filters */
+function ftab(btn){
+  haptic();
+  var p = btn.parentElement;
+  p.querySelectorAll('.ftab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+}
+
+/* Audio Playback Controls */
+function togglePlay(btn){
+  haptic();
+  var isPlaying = btn.textContent.trim() === '❚❚';
+  document.querySelectorAll('.play-btn').forEach(function(b){
+    b.textContent = '▶';
+    var c = b.closest('[data-card],.bubble,.short');
+    if(c) c.classList.remove('playing');
+  });
+  document.getElementById('playerSheet').classList.remove('playing');
+
+  var card = btn.closest('[data-card]');
+  if(!isPlaying){
+    btn.textContent = '❚❚';
+    if(card) {
+      card.classList.add('playing');
+      var tr = card.dataset.track || 'Arif Rahman — বৃষ্টির গল্প';
+      var art = card.dataset.artist || 'Arif Rahman';
+      document.getElementById('mpTitle').textContent = tr;
+      document.getElementById('pTrackTitle').textContent = tr;
+      document.getElementById('pArtistName').textContent = art;
+      document.getElementById('diText').textContent = art;
+    }
+    startAudio();
+  } else {
+    stopAudio();
+  }
+}
+
+function miniPlayToggle(btn){
+  haptic();
+  var isPlaying = btn.textContent.trim() === '❚❚';
+  btn.textContent = isPlaying ? '▶' : '❚❚';
+  if(!isPlaying) startAudio(); else stopAudio();
+}
+
+/* Interactions */
+function like(btn){
+  haptic();
+  var liked = btn.classList.toggle('liked');
+  if(liked) toast('Liked ♥');
+}
+function follow(btn){
+  haptic();
+  var on = btn.classList.toggle('on');
+  btn.textContent = on ? 'Following' : 'Follow';
+  if(on) toast('Follow করা হয়েছে ✓');
+}
+function mode(btn){
+  haptic();
+  document.querySelectorAll('.mode').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+}
+
+/* Shorts Navigation */
+var shortIdx = 0;
+function nextShort(){
+  haptic();
+  var shorts = document.querySelectorAll('[data-short]');
+  shorts[shortIdx].classList.remove('active');
+  shortIdx = (shortIdx + 1) % shorts.length;
+  shorts[shortIdx].classList.add('active');
+  toast('পরবর্তী ভিডিও ⏭');
+}
+
+/* Audio Recording Studio */
+var recOn = false, recSec = 0, recTimer = null, rwTimer = null;
+function toggleRec(){
+  haptic();
+  recOn = !recOn;
+  var zone = document.getElementById('recZone');
+  var btn = document.getElementById('recBtn');
+  var label = document.getElementById('recLabel');
+  var header = document.getElementById('recStatusHeader');
+  zone.classList.toggle('rec-on', recOn);
+
+  if(recOn){
+    btn.textContent = '■';
+    header.textContent = 'রেকর্ডিং চলছে... স্পষ্ট কণ্ঠে বলুন 🎙️';
+    recTimer = setInterval(function(){
+      recSec++;
+      var m = String(Math.floor(recSec/60)).padStart(2,'0');
+      var s = String(recSec%60).padStart(2,'0');
+      label.textContent = m + ':' + s + ' • Recording...';
+    }, 1000);
+    var rw = document.getElementById('recWave');
+    rwTimer = setInterval(function(){
+      if(!rw) return;
+      for(var i=0; i<rw.children.length; i++){
+        rw.children[i].style.height = (14 + Math.round(Math.random() * 46)) + 'px';
+      }
+    }, 140);
+  } else {
+    btn.textContent = '●';
+    header.textContent = 'রেকর্ডিং সম্পন্ন হয়েছে ✓';
+    clearInterval(recTimer);
+    clearInterval(rwTimer);
+    label.textContent = '⏸ Paused • ' + recSec + 's রেকর্ড হয়েছে';
+  }
+}
+
+function publishPost(){
+  haptic();
+  if(recOn) toggleRec();
+  var title = document.getElementById('postTitleInput').value || 'আমার নতুন ভয়েস পোস্ট';
+  toast('🎉 পোস্ট প্রকাশিত হয়েছে: ' + title);
+  go('s-home');
+}
+
+/* Full Player Functions */
+function openPlayer(){
+  haptic();
+  document.getElementById('playerSheet').classList.add('open','playing');
+  document.getElementById('pMain').textContent = '❚❚';
+  buildWaves();
+  startAudio();
+}
+function closePlayer(){
+  haptic();
+  document.getElementById('playerSheet').classList.remove('open','playing');
+  stopAudio();
+}
+function playerToggle(){
+  haptic();
+  var sh = document.getElementById('playerSheet');
+  var on = sh.classList.toggle('playing');
+  document.getElementById('pMain').textContent = on ? '❚❚' : '▶';
+  if(on) startAudio(); else stopAudio();
+}
+function seekRel(delta){
+  haptic();
+  toast((delta > 0 ? '+' : '') + delta + ' সেকেন্ড');
+}
+function seekAudio(e){
+  haptic();
+  var rect = e.currentTarget.getBoundingClientRect();
+  var pct = Math.max(0, Math.min(100, Math.round(((e.clientX - rect.left) / rect.width) * 100)));
+  document.getElementById('pBar').style.width = pct + '%';
+  document.getElementById('pThumb').style.left = pct + '%';
+  toast('টাইমলাইন: ' + pct + '%-এ সেট করা হলো');
+}
+function toggleSpeed(){
+  haptic();
+  var speeds = [1.0, 1.25, 1.5, 2.0];
+  var idx = (speeds.indexOf(currentSpeed) + 1) % speeds.length;
+  currentSpeed = speeds[idx];
+  document.getElementById('speedBtn').textContent = '⏱ ' + currentSpeed + 'x';
+  toast('স্পিড: ' + currentSpeed + 'x');
+}
+
+/* Comments Modal */
+function openComments(title){
+  haptic();
+  document.getElementById('commHeader').textContent = title + ' • কমেন্টস (48)';
+  document.getElementById('commentsSheet').classList.add('open');
+}
+function closeComments(){
+  document.getElementById('commentsSheet').classList.remove('open');
+}
+function addTextComment(){
+  var inp = document.getElementById('commInput');
+  if(!inp.value.trim()) return;
+  var list = document.getElementById('commentsList');
+  var item = document.createElement('div');
+  item.className = 'list-item';
+  item.style.padding = '10px 0';
+  item.innerHTML = '<div class="avatar" style="width:40px;height:40px;background:var(--accent-gradient)">You</div><div style="flex:1"><b style="font-size:14px">You</b> <span style="font-size:11px;color:var(--muted)">• Just now</span><p style="font-size:14px;margin-top:2px">'+inp.value+'</p></div>';
+  list.prepend(item);
+  inp.value = '';
+  toast('কমেন্ট যোগ করা হয়েছে ✓');
+}
+function addVoiceComment(){
+  toast('🎙️ ভয়েস কমেন্ট রেকর্ড হচ্ছে... (২ সেকেন্ড)');
+  setTimeout(function(){
+    var list = document.getElementById('commentsList');
+    var item = document.createElement('div');
+    item.className = 'list-item';
+    item.style.padding = '10px 0';
+    item.innerHTML = '<div class="avatar" style="width:40px;height:40px;background:var(--accent-gradient)">You</div><div style="flex:1"><b style="font-size:14px">You</b> <span class="chip" style="margin-left:6px">🎙️ Voice 0:12</span></div>';
+    list.prepend(item);
+    toast('ভয়েস কমেন্ট পোস্ট হয়েছে ✓');
+  }, 1200);
+}
+
+/* Share Modal */
+function openShare(title){
+  haptic();
+  document.getElementById('shareSheet').classList.add('open');
+}
+function closeShare(){
+  document.getElementById('shareSheet').classList.remove('open');
+}
+
+/* Voice Call */
+function startCall(type){
+  haptic();
+  var m = document.getElementById('callModal');
+  m.classList.add('open');
+  document.getElementById('callStatusText').textContent = (type==='video' ? 'ভিডিও কল হচ্ছে...' : 'অডিও কল হচ্ছে...') + ' 📞';
+}
+function endCall(){
+  haptic();
+  document.getElementById('callModal').classList.remove('open');
+  toast('কল সমাপ্ত হয়েছে');
+}
+
+/* Stories */
+function openStory(name, av, text){
+  haptic();
+  document.getElementById('svName').textContent = name;
+  document.getElementById('svAvatar').textContent = av;
+  document.getElementById('svStoryText').textContent = '"' + text + '"';
+  document.getElementById('storyViewer').classList.add('open');
+  startAudio(260);
+}
+function closeStory(){
+  haptic();
+  document.getElementById('storyViewer').classList.remove('open');
+  stopAudio();
+}
+
+/* Auto Caption & AI Summary */
+function generateAutoCaption(){
+  toast('বাংলা স্পিচ-টু-টেক্সট (STT) ক্যাপশন তৈরি হচ্ছে...');
+  setTimeout(function(){
+    toast('Caption যুক্ত হয়েছে: "আজকের বৃষ্টিতে ঢাকা যেন এক অচেনা রূপ নিয়েছে"');
+  }, 1400);
+}
+function generateAiSummary(){
+  toast('AI Summary জেনারেট হচ্ছে 🤖...');
+  setTimeout(function(){
+    document.getElementById('postTitleInput').value = 'বৃষ্টির বিকেল ও পুরোনো স্মৃতি — আড্ডার গল্প';
+    toast('AI টাইটেল ও হ্যাশট্যাগ যোগ করা হয়েছে ✓');
+  }, 1200);
+}
+
+/* Audio FX Modal */
+function openFxSheet(type){
+  haptic();
+  var title = (type==='bgm') ? 'Background মিউজিক বেছে নিন 🎵' : 'ভয়েস ফিল্টার ও ইফেক্টস ✨';
+  document.getElementById('fxModalTitle').textContent = title;
+  var grid = document.getElementById('fxGrid');
+  grid.innerHTML = '';
+
+  var items = (type==='bgm') ? [
+    {n:'🌧️ মৃদু বৃষ্টি',s:'Rain Lo-Fi'},
+    {n:'🎸 অ্যাকোস্টিক গিটার',s:'Soft Chords'},
+    {n:'🪈 বাঁশির সুর',s:'Traditional Flute'},
+    {n:'☕ ক্যাফে অ্যাম্বিয়েন্স',s:'Cozy Beats'}
+  ] : [
+    {n:'🎙️ Studio Mic',s:'Crystal Clear'},
+    {n:'📻 Vintage Radio',s:'Old BD Radio'},
+    {n:'✨ Reverb & Echo',s:'Concert Hall'},
+    {n:'🤖 Deep Bass',s:'Rich Tone'}
+  ];
+
+  items.forEach(function(it){
+    var el = document.createElement('div');
+    el.className = 'cat';
+    el.style.background = 'var(--surface-solid)';
+    el.style.border = '1px solid var(--line-strong)';
+    el.innerHTML = '<b>'+it.n+'</b><span>'+it.s+'</span>';
+    el.onclick = function(){ toast(it.n + ' প্রয়োগ করা হয়েছে ✓'); closeFxSheet(); };
+    grid.appendChild(el);
+  });
+  document.getElementById('audioFxSheet').classList.add('open');
+}
+function closeFxSheet(){
+  document.getElementById('audioFxSheet').classList.remove('open');
+}
+
+/* Live Poll */
+function votePoll(btn, pct){
+  haptic();
+  toast('ভোট গৃহীত হয়েছে: ' + pct + ' ✓');
+}
+
+/* Room Messages */
+function sendRoomMsg(){
+  var inp = document.getElementById('roomMsgInput');
+  if(!inp.value.trim()) return;
+  var box = document.getElementById('roomChatHistory');
+  var p = document.createElement('p');
+  p.innerHTML = '<b>You:</b> ' + inp.value;
+  box.appendChild(p);
+  inp.value = '';
+  toast('মেসেজ পাঠানো হয়েছে ✓');
+}
+
+/* Direct Chat Messaging */
+function sendDirectMsg(){
+  var inp = document.getElementById('directMsgInput');
+  if(!inp.value.trim()) return;
+  var scroll = document.getElementById('chatScroll');
+  var row = document.createElement('div');
+  row.className = 'bubble-row';
+  row.innerHTML = '<div class="bubble me">' + inp.value + '</div>';
+  scroll.appendChild(row);
+  inp.value = '';
+  scroll.scrollTop = scroll.scrollHeight;
+}
+function recordAndSendVoiceMsg(){
+  toast('🎙️ ভয়েস মেসেজ রেকর্ড হচ্ছে... (২ সেকেন্ড)');
+  setTimeout(function(){
+    var scroll = document.getElementById('chatScroll');
+    var row = document.createElement('div');
+    row.className = 'bubble-row';
+    row.innerHTML = '<div class="bubble me"><div style="display:flex;align-items:center;gap:8px"><button class="play-btn sm" onclick="togglePlay(this)">▶</button><span class="chip" style="background:#fff;color:#120E0B">🎙️ Voice Note • 0:14</span></div></div>';
+    scroll.appendChild(row);
+    scroll.scrollTop = scroll.scrollHeight;
+    toast('ভয়েস মেসেজ পাঠানো হয়েছে ✓');
+  }, 1200);
+}
+
+/* Dynamic Island */
+function toggleIsland(){
+  haptic();
+  var di = document.getElementById('dynamicIsland');
+  di.classList.toggle('expanded');
+}
+
+/* Creator Studio & Profile */
+function openCreatorStudio(){ haptic(); document.getElementById('creatorStudioModal').classList.add('open'); }
+function closeCreatorStudio(){ document.getElementById('creatorStudioModal').classList.remove('open'); }
+function openEditProfile(){ haptic(); document.getElementById('editProfileModal').classList.add('open'); }
+function closeEditProfile(){ document.getElementById('editProfileModal').classList.remove('open'); }
+
+/* Drawer */
+function openDrawer(){ haptic(); document.getElementById('drawer').classList.add('open'); }
+function closeDrawer(){ document.getElementById('drawer').classList.remove('open'); }
+function jump(id){ closeDrawer(); go(id); }
+
+/* Settings Toggles */
+function toggleDataSaver(btn){
+  haptic();
+  var st = document.getElementById('dsStatus');
+  var on = st.textContent === 'চালু আছে';
+  st.textContent = on ? 'বন্ধ' : 'চালু আছে';
+  toast('Data Saver ' + (on ? 'বন্ধ' : 'চালু') + ' করা হয়েছে');
+}
+
+/* OTP auto advance */
+function initOtp(){
+  var inputs = document.querySelectorAll('.otp-row input');
+  inputs.forEach(function(inp, i){
+    inp.addEventListener('input', function(){
+      inp.value = inp.value.replace(/\D/g,'').slice(-1);
+      if(inp.value && i < inputs.length-1) inputs[i+1].focus();
+    });
+    inp.addEventListener('keydown', function(e){
+      if(e.key === 'Backspace' && !inp.value && i > 0) inputs[i-1].focus();
+    });
+  });
+}
+initOtp();
+buildWaves();
+</script>
+</body>
+</html>
